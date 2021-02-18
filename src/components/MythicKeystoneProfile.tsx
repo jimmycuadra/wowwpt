@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+import { Profile } from "../db/MythicKeystoneProfile";
 import BestRun from "./BestRun";
-import { formatCharacterName } from "./Formatting";
+import { formatCharacterName } from "../utils/Formatting";
 
 interface Props {
   region: string,
@@ -15,90 +16,6 @@ interface Props {
 interface State {
   profile: Profile | null,
   error: string | null
-}
-
-interface Profile {
-  _links: Links,
-  current_period: CurrentPeriod,
-  seasons: Season[],
-  character: Character,
-}
-
-interface Links {
-  self: Link,
-}
-
-interface Link {
-  href: string,
-}
-
-interface CurrentPeriod {
-  period: Period,
-  best_runs: BestRunData[],
-}
-
-interface Period {
-  key: Link,
-  id: number,
-}
-
-export interface BestRunData {
-  completed_timestamp: number,
-  duration: number,
-  keystone_level: number,
-  keystone_affixes: Affix[],
-  members: Member[],
-  dungeon: Dungeon,
-  is_completed_within_time: boolean,
-}
-
-interface Affix {
-  key: Link,
-  name: string,
-  id: number,
-}
-
-interface Member {
-  character: Character,
-  specialization: Specialization,
-  race: Race,
-  equipped_item_level: number,
-}
-
-interface Specialization {
-  key: Link,
-  name: string,
-  id: number
-}
-
-interface Race {
-  key: Link,
-  name: string,
-  id: number,
-}
-
-interface Dungeon {
-  key: Link,
-  name: string,
-  id: number
-}
-
-interface Season {
-  key: Link,
-  id: number,
-}
-
-export interface Character {
-  key?: Link,
-  name: string,
-  id: number,
-  realm: Realm,
-}
-
-interface Realm {
-  key: Link,
-  id: number,
-  slug: string,
 }
 
 export default function MythicKeystoneProfile(props: Props) {
