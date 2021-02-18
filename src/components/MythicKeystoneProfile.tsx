@@ -33,10 +33,15 @@ export default function MythicKeystoneProfile(props: Props) {
   let content;
 
   if (["idle", "loading"].indexOf(profileStatus) !== -1) {
-    content = <div>Loading mythic keystone profile data...</div>;
+    content = (
+      <>
+        <h1 className="h3">Mythic Keystone Profile</h1>
+        <p>Loading data...</p>;
+      </>
+    );
   } else if (profileStatus === "succeeded") {
     content = (
-      <div>
+      <>
         <h1 className="h3">Mythic Keystone Profile for {formatCharacterName(profile.character)}</h1>
         <Table bordered striped>
           <thead>
@@ -53,14 +58,15 @@ export default function MythicKeystoneProfile(props: Props) {
             {profile.current_period.best_runs.map((bestRun) => <BestRun run={bestRun} key={bestRun.completed_timestamp} />)}
           </tbody>
         </Table>
-      </div>
+      </>
     );
   } else if (profileStatus === "failed") {
     content = (
-      <div>
+      <>
+        <h1 className="h3">Mythic Keystone Profile</h1>
         <p>Error fetching data: {error}</p>
         <p>Your access token is probably expired. Try logging out and logging in with a new access token.</p>
-      </div>
+      </>
     );
   } else {
     throw new Error("unhandled case");
