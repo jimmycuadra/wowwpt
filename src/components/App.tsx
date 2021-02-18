@@ -19,7 +19,7 @@ function App() {
       </Route>
       <Route path="/">
         {accessToken ?
-        <MythicKeystoneProfile region="us" realm="stonemaul" character="jibsy" namespace="profile-us" locale="en_US" accessToken={accessToken} />
+        <MythicKeystoneProfile region="us" realm="stonemaul" characterName="jibsy" namespace="profile-us" locale="en_US" accessToken={accessToken} />
         :
           <Redirect to="/login" />
         }
