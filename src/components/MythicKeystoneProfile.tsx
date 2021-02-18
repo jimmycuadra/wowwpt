@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector } from "react-redux";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Table from "react-bootstrap/Table";
 
 import { RootState, useAppDispatch } from "../db/store";
 import { fetchProfile, selectAllProfiles } from "../reducers/MythicKeystoneProfile";
@@ -27,13 +30,15 @@ export default function MythicKeystoneProfile(props: Props) {
     }
   }, [profileStatus, dispatch, props]);
 
+  let content;
+
   if (["idle", "loading"].indexOf(profileStatus) !== -1) {
-    return <div>Loading mythic keystone profile data...</div>;
+    content = <div>Loading mythic keystone profile data...</div>;
   } else if (profileStatus === "succeeded") {
-    return (
+    content = (
       <div>
-        <h1>Mythic Keystone Profile for {formatCharacterName(profile.character)}</h1>
-        <table>
+        <h1 className="h3">Mythic Keystone Profile for {formatCharacterName(profile.character)}</h1>
+        <Table bordered striped>
           <thead>
             <tr>
               <th>Dungeon</th>
@@ -47,11 +52,11 @@ export default function MythicKeystoneProfile(props: Props) {
           <tbody>
             {profile.current_period.best_runs.map((bestRun) => <BestRun run={bestRun} key={bestRun.completed_timestamp} />)}
           </tbody>
-        </table>
+        </Table>
       </div>
     );
   } else if (profileStatus === "failed") {
-    return (
+    content = (
       <div>
         <p>Error fetching data: {error}</p>
         <p>Your access token is probably expired. Try logging out and logging in with a new access token.</p>
@@ -60,4 +65,12 @@ export default function MythicKeystoneProfile(props: Props) {
   } else {
     throw new Error("unhandled case");
   }
+
+  return (
+    <Row>
+      <Col>
+        {content}
+      </Col>
+    </Row>
+  );
 }
