@@ -9,6 +9,8 @@ import Navigation from "./Navigation";
 
 function App() {
   const accessToken = localStorage.getItem("accessToken");
+  const region = localStorage.getItem("region") || "us";
+  const locale = localStorage.getItem("locale") || "en_US";
 
   return (
     <Router>
@@ -22,7 +24,7 @@ function App() {
         <div className="body">
           <Container fluid>
             {accessToken ?
-            <MythicKeystoneProfile region="us" realm="stonemaul" characterName="jibsy" namespace="profile-us" locale="en_US" accessToken={accessToken} />
+            <MythicKeystoneProfile region={region} realm="stonemaul" characterName="jibsy" namespace={`profile-${region}`} locale={locale} accessToken={accessToken} />
             :
               <Redirect to="/login" />
             }
