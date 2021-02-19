@@ -27,7 +27,10 @@ interface FetchProfileParams {
 }
 
 export const fetchProfile = createAsyncThunk("mythicKeystoneProfiles/fetchProfile", async ({ region, realm, characterName, namespace, locale, accessToken }: FetchProfileParams) => {
-    let response = await fetch(
+  let response;
+
+  try {
+    response = await fetch(
       `https://${region}.api.blizzard.com/profile/wow/character/${realm}/${characterName}/mythic-keystone-profile?namespace=${namespace}&locale=${locale}`,
       {
         headers: {
@@ -35,12 +38,15 @@ export const fetchProfile = createAsyncThunk("mythicKeystoneProfiles/fetchProfil
         }
       }
     );
+  } catch (error) {
+    return Promise.reject(error.toString());
+  }
 
-    if (response.ok) {
-      return response.json();
-    } else {
-      return Promise.reject(`${response.status} ${response.statusText}`);
-    }
+  if (response.ok) {
+    return response.json();
+  } else {
+    return Promise.reject(`${response.status} ${response.statusText}`);
+  }
 });
 
 const profilesSlice = createSlice({
