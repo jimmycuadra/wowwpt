@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 
 import { RootState, useAppDispatch } from "../data/store";
-import { fetchProfile, selectAllProfiles } from "../redux/mythicKeystoneProfiles";
+import { fetchProfile, selectAllProfiles } from "../redux/characterMythicKeystoneProfileIndex";
 import BestRun from "./BestRun";
 import { formatCharacterName } from "../utils/format";
 
@@ -18,11 +18,11 @@ interface Props {
   accessToken: string,
 }
 
-export default function MythicKeystoneProfile(props: Props) {
+export default function CharacterMythicKeystoneProfileIndex(props: Props) {
   const dispatch = useAppDispatch();
-  const profileStatus = useSelector((state: RootState) => state.mythicKeystoneProfiles.status);
+  const profileStatus = useSelector((state: RootState) => state.characterMythicKeystoneProfileIndex.status);
   const profile = useSelector(selectAllProfiles)[0];
-  const error = useSelector((state: RootState) => state.mythicKeystoneProfiles.error);
+  const error = useSelector((state: RootState) => state.characterMythicKeystoneProfileIndex.error);
 
   useEffect(() => {
     if (profileStatus === "idle") {
@@ -36,7 +36,7 @@ export default function MythicKeystoneProfile(props: Props) {
     content = (
       <>
         <h1 className="h3">Mythic Keystone Profile</h1>
-        <p>Loading data...</p>;
+        <p>Loading data...</p>
       </>
     );
   } else if (profileStatus === "succeeded") {

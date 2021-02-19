@@ -1,15 +1,15 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 
 import { RootState } from "../data/store";
-import { MythicKeystoneProfile } from "../data/model";
+import { CharacterMythicKeystoneProfileIndex } from "../data/CharacterMythicKeystoneProfileIndex";
 
 interface ProfileState {
   status: "idle" | "loading" | "succeeded" | "failed",
   error: string | null,
 }
 
-const profilesAdapter = createEntityAdapter<MythicKeystoneProfile>({
-  selectId: (profile: MythicKeystoneProfile) => profile.character.id,
+const profilesAdapter = createEntityAdapter<CharacterMythicKeystoneProfileIndex>({
+  selectId: (profile) => profile.character.id,
 });
 
 const initialState = profilesAdapter.getInitialState({
@@ -72,6 +72,6 @@ const profilesSlice = createSlice({
 
 export const {
   selectAll: selectAllProfiles,
-} = profilesAdapter.getSelectors((state: RootState) => state.mythicKeystoneProfiles);
+} = profilesAdapter.getSelectors((state: RootState) => state.characterMythicKeystoneProfileIndex);
 
 export default profilesSlice.reducer;

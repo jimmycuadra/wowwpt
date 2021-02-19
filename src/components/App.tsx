@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import './App.css';
 
 import Login from "./Login";
-import MythicKeystoneProfile from "./MythicKeystoneProfile";
+import CharacterMythicKeystoneProfileIndex from "./CharacterMythicKeystoneProfileIndex";
 import Navigation from "./Navigation";
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
         <div className="body">
           <Container fluid>
             {accessToken ?
-            <MythicKeystoneProfile region={region} realm="stonemaul" characterName="jibsy" namespace={`profile-${region}`} locale={locale} accessToken={accessToken} />
+            <CharacterMythicKeystoneProfileIndex region={region} realm="stonemaul" characterName="jibsy" namespace={`profile-${region}`} locale={locale} accessToken={accessToken} />
             :
               <Redirect to="/login" />
             }

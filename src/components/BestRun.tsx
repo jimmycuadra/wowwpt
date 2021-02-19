@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BestRunData } from "../data/model";
+import { BestRunData } from "../data/CharacterMythicKeystoneProfileIndex";
 import { formatCharacterName, formatDuration } from "../utils/format";
 
 interface Props {

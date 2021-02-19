@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { useDispatch } from "react-redux";
 
-import mythicKeystoneProfilesReducer from "../redux/mythicKeystoneProfiles";
+import characterMythicKeystoneProfileIndex from "../redux/characterMythicKeystoneProfileIndex";
 
 const store = configureStore({
   reducer: {
-    mythicKeystoneProfiles: mythicKeystoneProfilesReducer,
+    characterMythicKeystoneProfileIndex: characterMythicKeystoneProfileIndex,
   }
 });
 
