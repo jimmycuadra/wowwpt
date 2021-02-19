@@ -5,9 +5,8 @@ import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 
 import { RootState, useAppDispatch } from "../data/store";
-import { fetchProfile, selectAllProfiles } from "../redux/characterMythicKeystoneProfileIndex";
+import { fetchCharacterMythicKeystoneProfileIndex, selectAllCharacterMythicKeystoneProfileIndexByCharacterName } from "../redux/characterMythicKeystoneProfileIndex";
 import BestRun from "./BestRun";
-import { formatCharacterName } from "../utils/format";
 
 interface Props {
   region: string,
@@ -20,29 +19,31 @@ interface Props {
 
 export default function CharacterMythicKeystoneProfileIndex(props: Props) {
   const dispatch = useAppDispatch();
-  const profileStatus = useSelector((state: RootState) => state.characterMythicKeystoneProfileIndex.status);
-  const profile = useSelector(selectAllProfiles)[0];
+  const status = useSelector((state: RootState) => state.characterMythicKeystoneProfileIndex.status);
+  const profile = useSelector((state: RootState) => selectAllCharacterMythicKeystoneProfileIndexByCharacterName(state, props.characterName, props.realm));
   const error = useSelector((state: RootState) => state.characterMythicKeystoneProfileIndex.error);
 
   useEffect(() => {
-    if (profileStatus === "idle") {
-      dispatch(fetchProfile(props));
+    if (status === "idle") {
+      dispatch(fetchCharacterMythicKeystoneProfileIndex(props));
     }
-  }, [profileStatus, dispatch, props]);
+  }, [status, dispatch, props]);
 
   let content;
 
-  if (["idle", "loading"].indexOf(profileStatus) !== -1) {
+  if (["idle", "loading"].indexOf(status) !== -1) {
     content = (
       <>
-        <h1 className="h3">Mythic Keystone Profile</h1>
         <p>Loading data...</p>
       </>
     );
-  } else if (profileStatus === "succeeded") {
-    content = (
-      <>
-        <h1 className="h3">Mythic Keystone Profile for {formatCharacterName(profile.character)}</h1>
+  } else if (status === "succeeded") {
+    if (!profile) {
+      content = (
+        <p>No profile found in redux store.</p>
+      );
+    } else if (profile.current_period.best_runs) {
+      content = (
         <Table bordered striped>
           <thead>
             <tr>
@@ -58,12 +59,13 @@ export default function CharacterMythicKeystoneProfileIndex(props: Props) {
             {profile.current_period.best_runs.map((bestRun) => <BestRun run={bestRun} key={bestRun.completed_timestamp} />)}
           </tbody>
         </Table>
-      </>
-    );
-  } else if (profileStatus === "failed") {
+      );
+    } else {
+      content = <p>No recorded mythic keystone runs during the current period.</p>;
+    }
+  } else if (status === "failed") {
     content = (
       <>
-        <h1 className="h3">Mythic Keystone Profile</h1>
         <p>Error fetching data: {error}</p>
         <p>Your access token is probably expired. Try logging out and logging in with a new access token.</p>
       </>
@@ -75,6 +77,7 @@ export default function CharacterMythicKeystoneProfileIndex(props: Props) {
   return (
     <Row>
       <Col>
+        <h3 className="h5">Mythic Keystone Profile</h3>
         {content}
       </Col>
     </Row>

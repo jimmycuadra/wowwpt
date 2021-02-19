@@ -12,11 +12,17 @@ export interface AccountProfileSummary {
 }
 
 export interface WowAccount {
+  characters: Character[],
+  id: number,
+}
+
+export interface Character {
   character: Link,
   faction: Faction,
   gender: Gender,
   id: number,
   level: number,
+  name: string,
   playable_class: NamedKeyedIdentifier,
   playable_race: NamedKeyedIdentifier,
   protected_character: Link,

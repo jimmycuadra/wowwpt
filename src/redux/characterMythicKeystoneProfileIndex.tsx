@@ -1,21 +1,12 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 
 import { RootState } from "../data/store";
+import { initialState } from "./common";
 import { CharacterMythicKeystoneProfileIndex } from "../data/CharacterMythicKeystoneProfileIndex";
 
-interface ProfileState {
-  status: "idle" | "loading" | "succeeded" | "failed",
-  error: string | null,
-}
-
-const profilesAdapter = createEntityAdapter<CharacterMythicKeystoneProfileIndex>({
+const characterMythicKeystoneProfileIndexAdapter = createEntityAdapter<CharacterMythicKeystoneProfileIndex>({
   selectId: (profile) => profile.character.id,
 });
-
-const initialState = profilesAdapter.getInitialState({
-  status: "idle",
-  error: null,
-} as ProfileState);
 
 interface FetchProfileParams {
   region: string,
@@ -26,7 +17,7 @@ interface FetchProfileParams {
   accessToken: string,
 }
 
-export const fetchProfile = createAsyncThunk("mythicKeystoneProfiles/fetchProfile", async ({ region, realm, characterName, namespace, locale, accessToken }: FetchProfileParams) => {
+export const fetchCharacterMythicKeystoneProfileIndex = createAsyncThunk("characterMythicKeystoneProfileIndex/fetchCharacterMythicKeystoneProfileIndex ", async ({ region, realm, characterName, namespace, locale, accessToken }: FetchProfileParams) => {
   let response;
 
   try {
@@ -50,21 +41,21 @@ export const fetchProfile = createAsyncThunk("mythicKeystoneProfiles/fetchProfil
 });
 
 const profilesSlice = createSlice({
-  name: "mythicKeystoneProfiles",
-  initialState,
+  name: "characterMythicKeystoneProfileIndex",
+  initialState: characterMythicKeystoneProfileIndexAdapter.getInitialState(initialState),
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(fetchProfile.pending, (state) => {
+    builder.addCase(fetchCharacterMythicKeystoneProfileIndex.pending, (state) => {
       state.status = "loading";
     });
 
-    builder.addCase(fetchProfile.fulfilled, (state, action) => {
+    builder.addCase(fetchCharacterMythicKeystoneProfileIndex.fulfilled, (state, action) => {
       state.status = "succeeded";
 
-      profilesAdapter.addOne(state, action.payload);
+      characterMythicKeystoneProfileIndexAdapter.addOne(state, action.payload);
     });
 
-    builder.addCase(fetchProfile.rejected, (state, action) => {
+    builder.addCase(fetchCharacterMythicKeystoneProfileIndex.rejected, (state, action) => {
       state.status = "failed";
 
       if (action.error.message) {
@@ -76,8 +67,16 @@ const profilesSlice = createSlice({
   },
 });
 
-export const {
-  selectAll: selectAllProfiles,
-} = profilesAdapter.getSelectors((state: RootState) => state.characterMythicKeystoneProfileIndex);
+const selectors = characterMythicKeystoneProfileIndexAdapter.getSelectors((state: RootState) => state.characterMythicKeystoneProfileIndex);
+
+export const selectAllCharacterMythicKeystoneProfileIndexes = selectors.selectAll;
+
+export function selectAllCharacterMythicKeystoneProfileIndexByCharacterName(state: RootState, characterName: string, realmSlug: string) {
+  return selectAllCharacterMythicKeystoneProfileIndexes(state).find((profile) => {
+    const character = profile.character;
+
+    return character.name.toLowerCase() === characterName && character.realm.slug === realmSlug;
+  });
+}
 
 export default profilesSlice.reducer;
