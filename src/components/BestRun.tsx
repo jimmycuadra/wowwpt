@@ -1,7 +1,7 @@
 import React from "react";
 
-import { BestRunData } from "../db/MythicKeystoneProfile";
-import { formatCharacterName, formatDuration } from "../utils/Formatting";
+import { BestRunData } from "../data/model";
+import { formatCharacterName, formatDuration } from "../utils/format";
 
 interface Props {
   run: BestRunData,

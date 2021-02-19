@@ -5,7 +5,7 @@ import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux";
-import store from "./db/store";
+import store from "./data/store";
 
 ReactDOM.render(
   <React.StrictMode>

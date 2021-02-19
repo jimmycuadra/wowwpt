@@ -4,10 +4,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 
-import { RootState, useAppDispatch } from "../db/store";
-import { fetchProfile, selectAllProfiles } from "../reducers/MythicKeystoneProfile";
+import { RootState, useAppDispatch } from "../data/store";
+import { fetchProfile, selectAllProfiles } from "../redux/mythicKeystoneProfiles";
 import BestRun from "./BestRun";
-import { formatCharacterName } from "../utils/Formatting";
+import { formatCharacterName } from "../utils/format";
 
 interface Props {
   region: string,

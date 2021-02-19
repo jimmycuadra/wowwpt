@@ -1,4 +1,4 @@
-export interface Profile {
+export interface MythicKeystoneProfile {
   _links: Links,
   current_period: CurrentPeriod,
   seasons: Array<Identifier & KeyLink>,

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { useDispatch } from "react-redux";
 
-import mythicKeystoneProfilesReducer from "../reducers/MythicKeystoneProfile";
+import mythicKeystoneProfilesReducer from "../redux/mythicKeystoneProfiles";
 
 const store = configureStore({
   reducer: {

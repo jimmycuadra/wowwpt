@@ -1,4 +1,4 @@
-import { Character } from "../db/MythicKeystoneProfile";
+import { Character } from "../data/model";
 
 export function formatCharacterName(character: Character) {
   return `${character.name} - ${character.realm.slug.replace(/^\w/, (c) => c.toUpperCase())}`;
