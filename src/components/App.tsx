@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 
 import "./App.css";
 
+import CharacterProgress from "./CharacterProgress";
 import CharacterSelect from "./CharacterSelect";
 import Navigation from "./Navigation";
 
@@ -20,7 +21,7 @@ function App() {
               <CharacterSelect />
             </Col>
             <Col>
-              <h3>Current character</h3>
+              <CharacterProgress />
             </Col>
           </Row>
         </Container>

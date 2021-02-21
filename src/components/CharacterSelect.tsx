@@ -2,17 +2,19 @@ import React from "react";
 import Nav from "react-bootstrap/Nav";
 import { useSelector } from "react-redux";
 
-import { selectAllCharacters } from "../redux/characters";
+import { useAppDispatch } from "../redux/store";
+import { chooseCharacter, selectAllCharacters } from "../redux/characters";
 import AddCharacter from "./AddCharacter";
 import { regions } from "../model/character";
 
 export default function CharacterSelect() {
+  const dispatch = useAppDispatch();
   const characters = useSelector(selectAllCharacters);
 
   const charactersContent = characters.map((character) => {
     return (
-      <Nav.Item as="li" key={`${character.name}-${character.realm}-${character.region}`}>
-        <Nav.Link>
+      <Nav.Item as="li" key={character.id}>
+        <Nav.Link onClick={() => dispatch(chooseCharacter(character.id))}>
           {character.name}-{character.realm} ({regions[character.region]})
         </Nav.Link>
       </Nav.Item>
