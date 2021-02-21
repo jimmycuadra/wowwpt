@@ -1,4 +1,5 @@
 import React from "react";
+import Nav from "react-bootstrap/Nav";
 import { useSelector } from "react-redux";
 
 import { selectAllCharacters } from "../redux/characters";
@@ -10,18 +11,20 @@ export default function CharacterSelect() {
 
   const charactersContent = characters.map((character) => {
     return (
-      <li key={`${character.name}-${character.realm}-${character.region}`}>
-        {character.name}-{character.realm} ({regions[character.region]})
-      </li>
+      <Nav.Item as="li" key={`${character.name}-${character.realm}-${character.region}`}>
+        <Nav.Link>
+          {character.name}-{character.realm} ({regions[character.region]})
+        </Nav.Link>
+      </Nav.Item>
     );
   });
 
   return (
     <>
       {characters.length > 0 && <p className="text-muted">Select a character.</p>}
-      <ul>
+      <Nav as="ul" className="flex-column">
         {charactersContent}
-      </ul>
+      </Nav>
       <AddCharacter />
     </>
   );
