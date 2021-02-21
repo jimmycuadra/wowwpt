@@ -18,11 +18,18 @@ const characters = createSlice({
   initialState,
   reducers: {
     addCharacter(state, action) {
+      const id = state.nextId;
+
       charactersAdapter.addOne(state, {
-        id: state.nextId,
+        id,
         ...action.payload
       });
+
       state.nextId++;
+
+      if (!state.current)  {
+        state.current = id;
+      }
     },
     chooseCharacter(state, action) {
       state.current = action.payload;

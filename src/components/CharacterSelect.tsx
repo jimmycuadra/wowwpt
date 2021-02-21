@@ -21,12 +21,22 @@ export default function CharacterSelect() {
     );
   });
 
-  return (
+  const characterSelect = (
     <>
-      {characters.length > 0 && <p className="text-muted">Select a character.</p>}
+      <p className="text-muted">Select a character.</p>
+
       <Nav as="ul" className="flex-column">
         {charactersContent}
       </Nav>
+    </>
+  );
+
+  return (
+    <>
+      <h3>Characters</h3>
+
+      {characters.length > 0 && characterSelect}
+
       <AddCharacter />
     </>
   );

@@ -17,7 +17,6 @@ function App() {
         <Container fluid>
           <Row>
             <Col xl={2}>
-              <h3>Characters</h3>
               <CharacterSelect />
             </Col>
             <Col>

@@ -7,7 +7,7 @@ export default function CharacterProgress() {
   const character = useSelector(selectCurrentCharacter);
 
   if (!character) {
-    return <h3>No character selected</h3>;
+    return <></>;
   }
 
   return (
