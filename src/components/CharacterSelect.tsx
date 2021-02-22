@@ -1,23 +1,33 @@
 import React from "react";
 import Nav from "react-bootstrap/Nav";
+import Form from "react-bootstrap/Form";
 import { useSelector } from "react-redux";
 
 import { useAppDispatch } from "../redux/store";
-import { chooseCharacter, selectAllCharacters } from "../redux/characters";
+import { chooseCharacter, selectAllCharacters, selectCurrentCharacter } from "../redux/characters";
 import AddCharacter from "./AddCharacter";
 import { regions } from "../model/character";
 
 export default function CharacterSelect() {
   const dispatch = useAppDispatch();
   const characters = useSelector(selectAllCharacters);
+  const currentCharacter = useSelector(selectCurrentCharacter);
 
   const charactersContent = characters.map((character) => {
+    const checked = currentCharacter && currentCharacter.id === character.id;
+
     return (
-      <Nav.Item as="li" key={character.id}>
-        <Nav.Link onClick={() => dispatch(chooseCharacter(character.id))}>
-          {character.name}-{character.realm} ({regions[character.region]})
-        </Nav.Link>
-      </Nav.Item>
+      <Form.Check
+        type="radio"
+        key={character.id}
+        value={character.id}
+        id={`character-${character.id}`}
+        name="id"
+        label={`${character.name}-${character.realm} (${regions[character.region]})`}
+        onChange={() => dispatch(chooseCharacter(character.id))}
+        checked={checked}
+        className={checked ? "checked" : ""}
+      />
     );
   });
 
@@ -25,9 +35,9 @@ export default function CharacterSelect() {
     <>
       <p className="text-muted">Select a character.</p>
 
-      <Nav as="ul" className="flex-column">
+      <Form className="character-select-form">
         {charactersContent}
-      </Nav>
+      </Form>
     </>
   );
 
