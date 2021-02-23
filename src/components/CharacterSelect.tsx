@@ -1,8 +1,8 @@
 import React from "react";
-import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import { useSelector } from "react-redux";
 
+import "./CharacterSelect.css";
 import { useAppDispatch } from "../redux/store";
 import { chooseCharacter, selectAllCharacters, selectCurrentCharacter } from "../redux/characters";
 import AddCharacter from "./AddCharacter";

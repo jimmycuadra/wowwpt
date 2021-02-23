@@ -1,34 +1,3 @@
 .body {
   padding: 2rem;
 }
-
-.nav {
-  margin-bottom: 2rem;
-}
-
-.character-select-form {
-  margin-bottom: 2rem;
-  padding-left: 0;
-}
-
-.character-select-form .form-check {
-  border-radius: 0.5rem;
-  border: 1px solid #000;
-  cursor: pointer;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-}
-
-.character-select-form .checked{
-  color: #fff;
-  background-color: #343a40;
-}
-
-.character-select-form input {
-  display: none;
-}
-
-.character-select-form label {
-  cursor: pointer;
-  display: block;
-}
