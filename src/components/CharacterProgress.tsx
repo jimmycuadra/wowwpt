@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
+import "./CharacterProgress.css";
 import { useAppDispatch } from "../redux/store";
 import { Dungeon, shadowlandsDungeons } from "../model/character";
 import {
@@ -64,7 +65,7 @@ export default function CharacterProgress() {
   }
 
   return (
-    <>
+    <div className="character-progress">
       <h3>{character.name}</h3>
 
       <h4>Quests</h4>
@@ -143,6 +144,6 @@ export default function CharacterProgress() {
         </Form.Group>
         <Button variant="primary" type="submit">Add M+ dungeon run</Button>
       </Form>
-    </>
+    </div>
   );
 }
