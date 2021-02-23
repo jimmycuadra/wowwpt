@@ -1,10 +1,11 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useSelector } from "react-redux";
 
 import "./CharacterSelect.css";
 import { useAppDispatch } from "../redux/store";
-import { chooseCharacter, selectAllCharacters, selectCurrentCharacter } from "../redux/characters";
+import { chooseCharacter, resetAllCharacters, selectAllCharacters, selectCurrentCharacter } from "../redux/characters";
 import AddCharacter from "./AddCharacter";
 import { regions } from "../model/character";
 
@@ -38,6 +39,16 @@ export default function CharacterSelect() {
       <Form className="character-select-form">
         {charactersContent}
       </Form>
+
+      <div className="reset-all">
+        <p className="text-muted">Reset all characters.</p>
+
+        <Button variant="danger" onClick={() => {
+          if (window.confirm("Are you sure you want to reset weekly progress for all characters?")) {
+            dispatch(resetAllCharacters());
+          }
+        }}>Reset all characters</Button>
+      </div>
     </>
   );
 

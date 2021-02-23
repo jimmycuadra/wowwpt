@@ -1,7 +1,7 @@
 import { EntityState, PayloadAction, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 
 import { RootState } from "./store";
-import { Character, MythicPlus } from "../model/character";
+import { Character, MythicPlus, Progress } from "../model/character";
 
 const charactersAdapter = createEntityAdapter<Character>();
 
@@ -68,21 +68,18 @@ const characters = createSlice({
         progress.mythicPlus.splice(action.payload, 1);
       }
     },
-    resetCharacter(state) {
+    resetAllCharacters(state) {
+      Object.values(state.entities).forEach((character) => {
+        if (character) {
+          resetProgress(character.progress)
+        }
+      });
+    },
+    resetCurrentCharacter(state) {
       const progress = getProgress(state);
 
       if (progress) {
-        progress.mythicPlus = [];
-        progress.raid = {
-          lfr: 0,
-          normal: 0,
-          heroic: 0,
-          mythic: 0,
-        };
-        progress.weeklyAnima = false;
-        progress.weeklyMawSouls = false;
-        progress.weeklyBonusEvent = false;
-        progress.worldBoss = false;
+        resetProgress(progress);
       }
     },
     setRaidLFR(state, action: PayloadAction<number>) {
@@ -156,6 +153,20 @@ function getProgress(state: CharactersState) {
   }
 }
 
+function resetProgress(progress: Progress) {
+  progress.mythicPlus = [];
+  progress.raid = {
+    lfr: 0,
+    normal: 0,
+    heroic: 0,
+    mythic: 0,
+  };
+  progress.weeklyAnima = false;
+  progress.weeklyMawSouls = false;
+  progress.weeklyBonusEvent = false;
+  progress.worldBoss = false;
+}
+
 export const {
   selectAll: selectAllCharacters,
   selectById: selectCharacterById,
@@ -183,7 +194,8 @@ export const {
   chooseCharacter,
   deleteAllData,
   deleteMythicPlusDungeonRun,
-  resetCharacter,
+  resetAllCharacters,
+  resetCurrentCharacter: resetCharacter,
   setRaidLFR,
   setRaidNormal,
   setRaidHeroic,

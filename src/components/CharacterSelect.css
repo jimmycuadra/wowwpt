@@ -24,3 +24,7 @@
   cursor: pointer;
   display: block;
 }
+
+.reset-all {
+  margin-bottom: 2rem;
+}
