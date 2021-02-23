@@ -56,9 +56,9 @@ export default function CharacterProgress() {
   if (progress.mythicPlus.length > 0) {
     mythicPlusRuns = (
       <ul>
-        {progress.mythicPlus.map((run) => {
+        {progress.mythicPlus.map((run, index) => {
           return (
-            <li>{run.dungeon} +{run.level}</li>
+            <li key={index}>{run.dungeon} +{run.level}</li>
           );
         })}
       </ul>
@@ -137,9 +137,9 @@ export default function CharacterProgress() {
             <Col>
               <Form.Group controlId="mythicPlusDungeon">
                 <Form.Label>Dungeon</Form.Label>
-                <Form.Control as="select" defaultValue={dungeon} onChange={((e) => setDungeon(e.target.value as Dungeon))}>
+                <Form.Control as="select" value={dungeon} onChange={((e) => setDungeon(e.target.value as Dungeon))}>
                   {shadowlandsDungeons.map((d) => {
-                    return <option key={d} value={d} selected={dungeon === d}>{d}</option>;
+                    return <option key={d} value={d}>{d}</option>;
                   })}
                 </Form.Control>
               </Form.Group>
