@@ -15,20 +15,10 @@ export default function CharacterSelect() {
   const currentCharacter = useSelector(selectCurrentCharacter);
 
   const charactersContent = characters.map((character) => {
-    const checked = currentCharacter && currentCharacter.id === character.id;
-
     return (
-      <Form.Check
-        type="radio"
-        key={character.id}
-        value={character.id}
-        id={`character-${character.id}`}
-        name="id"
-        label={`${character.name}-${character.realm} (${regions[character.region]})`}
-        onChange={() => dispatch(chooseCharacter(character.id))}
-        checked={checked}
-        className={checked ? "checked" : ""}
-      />
+      <option key={character.id} value={character.id}>
+        {`${character.name}-${character.realm} (${regions[character.region]})`}
+      </option>
     );
   });
 
@@ -36,11 +26,21 @@ export default function CharacterSelect() {
     <>
       <p className="text-muted">Select a character.</p>
 
-      <Form className="character-select-form">
-        {charactersContent}
+      <Form className="character-select-section">
+        <Form.Control as="select" value={currentCharacter ? currentCharacter.id : characters[0].id} onChange={(e) => {
+          const id = parseInt(e.target.value, 10);
+
+          if (isNaN(id)) {
+            throw new Error("ID of selected character is not a number.");
+          } else {
+            dispatch(chooseCharacter(id))
+          }
+        }}>
+          {charactersContent}
+        </Form.Control>
       </Form>
 
-      <div className="reset-all">
+      <div className="character-select-section">
         <p className="text-muted">Reset all characters.</p>
 
         <Button variant="danger" onClick={() => {
