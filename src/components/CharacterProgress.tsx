@@ -11,6 +11,7 @@ import { useAppDispatch } from "../redux/store";
 import { Dungeon, shadowlandsDungeons } from "../model/character";
 import {
   addMythicPlusDungeonRun,
+  deleteMythicPlusDungeonRun,
   selectCurrentCharacter,
   selectProgress,
   setRaidLFR,
@@ -55,16 +56,35 @@ export default function CharacterProgress() {
 
   if (progress.mythicPlus.length > 0) {
     mythicPlusRuns = (
-      <ul>
-        {progress.mythicPlus.map((run, index) => {
-          return (
-            <li key={index}>{run.dungeon} +{run.level}</li>
-          );
-        })}
-      </ul>
+      <div className="table-responsive">
+        <table className="table align-middle">
+          <thead>
+            <tr>
+              <th>Dungeon</th>
+              <th>Keystone level</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {progress.mythicPlus.map((run, index) => {
+              return (
+                <tr key={index}>
+                  <td>{run.dungeon}</td>
+                  <td>{run.level}</td>
+                  <td><Button variant="danger" size="sm" onClick={() => {
+                    if (window.confirm("Are you sure you want to delete this Mythic Plus dungeon run?")) {
+                      dispatch(deleteMythicPlusDungeonRun(index))
+                    }
+                  }}>Delete</Button></td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     );
   } else {
-    mythicPlusRuns = <></>;
+    mythicPlusRuns = <p>No dungeon runs recorded. Use the form to the right to add a new dungeon run.</p>;
   }
 
   return (

@@ -61,6 +61,13 @@ const characters = createSlice({
     chooseCharacter(state, action: PayloadAction<number>) {
       state.current = action.payload;
     },
+    deleteMythicPlusDungeonRun(state, action: PayloadAction<number>) {
+      const progress = getProgress(state);
+
+      if (progress) {
+        progress.mythicPlus.splice(action.payload, 1);
+      }
+    },
     setRaidLFR(state, action: PayloadAction<number>) {
       const progress = getProgress(state);
 
@@ -158,6 +165,7 @@ export const {
   addMythicPlusDungeonRun,
   clearAllData,
   chooseCharacter,
+  deleteMythicPlusDungeonRun,
   setRaidLFR,
   setRaidNormal,
   setRaidHeroic,
