@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 import { useAppDispatch } from "../redux/store";
-import { shadowlandsDungeons } from "../model/character";
+import { Dungeon, shadowlandsDungeons } from "../model/character";
 import {
+  addMythicPlusDungeonRun,
   selectCurrentCharacter,
   selectProgress,
   setRaidLFR,
@@ -22,6 +23,25 @@ export default function CharacterProgress() {
   const character = useSelector(selectCurrentCharacter);
   const progress = useSelector(selectProgress);
   const dispatch = useAppDispatch();
+  const [dungeon, setDungeon] = useState("De Other Side" as Dungeon);
+  const [level, setLevel] = useState(2);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    if (level < 2) {
+      alert("Keystone level must be at least 2.");
+      return;
+    }
+
+    dispatch(addMythicPlusDungeonRun({
+      dungeon,
+      level,
+    }));
+
+    setDungeon("De Other Side" as Dungeon);
+    setLevel(2);
+  }
 
   if (!(character && progress)) {
     return <></>;
@@ -49,7 +69,7 @@ export default function CharacterProgress() {
 
       <h4>Quests</h4>
 
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Check
           inline
           label="World boss"
@@ -104,15 +124,22 @@ export default function CharacterProgress() {
 
         <Form.Group controlId="mythicPlusDungeon">
           <Form.Label>Dungeon</Form.Label>
-          <Form.Control as="select">
-            {shadowlandsDungeons.map((dungeon) => {
-              return <option key={dungeon} value={dungeon}>{dungeon}</option>;
+          <Form.Control as="select" defaultValue={dungeon} onChange={((e) => setDungeon(e.target.value as Dungeon))}>
+            {shadowlandsDungeons.map((d) => {
+              return <option key={d} value={d} selected={dungeon === d}>{d}</option>;
             })}
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="mythicPlusLevel">
           <Form.Label>Keystone level</Form.Label>
-          <Form.Control />
+          <Form.Control
+            value={level}
+          onChange={(e) => {
+            const value = parseInt(e.target.value, 10);
+
+            setLevel(isNaN(value) ? 2 : value);
+          }}
+          />
         </Form.Group>
         <Button variant="primary" type="submit">Add M+ dungeon run</Button>
       </Form>

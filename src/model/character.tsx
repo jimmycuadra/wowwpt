@@ -17,6 +17,16 @@ export const shadowlandsDungeons = [
     "Theater of Pain",
 ];
 
+export type Dungeon =
+  "De Other Side" |
+  "Halls of Atonement" |
+  "Mists of Tirna Scithe" |
+  "Plaguefall" |
+  "Sanguine Depths" |
+  "Spires of Ascenion" |
+  "The Necrotic Wake" |
+  "Theater of Pain";
+
 export interface Character {
   id: number,
   name: string,
@@ -42,14 +52,6 @@ export interface Raid {
 }
 
 export interface MythicPlus {
-  dungeon:
-    "De Other Side" |
-    "Halls of Atonement" |
-    "Mists of Tirna Scithe" |
-    "Plaguefall" |
-    "Sanguine Depths" |
-    "Spires of Ascenion" |
-    "The Necrotic Wake" |
-    "Theater of Pain",
+  dungeon: Dungeon,
   level: number,
 }
