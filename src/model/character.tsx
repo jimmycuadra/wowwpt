@@ -22,26 +22,10 @@ export interface Character {
   name: string,
   realm: string,
   region: "us" | "eu",
-  progress: CharacterProgressData,
+  progress: Progress,
 }
 
-export interface CharacterProgressData {
-  expansions: Expansions,
-}
-
-export interface Expansions {
-  shadowlands: Shadowlands,
-}
-
-export interface Shadowlands {
-  seasons: ShadowlandsSeasons,
-}
-
-export interface ShadowlandsSeasons {
-  one: ShadowlandsSeasonOne
-}
-
-export interface ShadowlandsSeasonOne {
+export interface Progress {
   mythicPlus: MythicPlus[],
   raid: Raid,
   weeklyAnima: boolean,

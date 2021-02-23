@@ -25,25 +25,17 @@ const characters = createSlice({
       charactersAdapter.addOne(state, {
         id,
         progress: {
-          expansions: {
-            shadowlands: {
-              seasons: {
-                one: {
-                  mythicPlus: [],
-                  raid: {
-                    lfr: 0,
-                    normal: 0,
-                    heroic: 0,
-                    mythic: 0,
-                  },
-                  weeklyAnima: false,
-                  weeklyMawSouls: false,
-                  weeklyBonusEvent: false,
-                  worldBoss: false,
-                }
-              },
-            }
+          mythicPlus: [],
+          raid: {
+            lfr: 0,
+            normal: 0,
+            heroic: 0,
+            mythic: 0,
           },
+          weeklyAnima: false,
+          weeklyMawSouls: false,
+          weeklyBonusEvent: false,
+          worldBoss: false,
         },
         ...action.payload
       });
@@ -58,28 +50,28 @@ const characters = createSlice({
       state.current = action.payload;
     },
     toggleWeeklyAnima(state) {
-      const progress = getShadowlandsSeasonOneProgress(state);
+      const progress = getProgress(state);
 
       if (progress) {
         progress.weeklyAnima = !progress.weeklyAnima;
       }
     },
     toggleWeeklyMawSouls(state) {
-      const progress = getShadowlandsSeasonOneProgress(state);
+      const progress = getProgress(state);
 
       if (progress) {
         progress.weeklyMawSouls = !progress.weeklyMawSouls;
       }
     },
     toggleWeeklyBonusEvent(state) {
-      const progress = getShadowlandsSeasonOneProgress(state);
+      const progress = getProgress(state);
 
       if (progress) {
         progress.weeklyBonusEvent = !progress.weeklyBonusEvent;
       }
     },
     toggleWorldBoss(state) {
-      const progress = getShadowlandsSeasonOneProgress(state);
+      const progress = getProgress(state);
 
       if (progress) {
         progress.worldBoss = !progress.worldBoss;
@@ -88,14 +80,14 @@ const characters = createSlice({
   },
 });
 
-function getShadowlandsSeasonOneProgress(state: CharactersState) {
+function getProgress(state: CharactersState) {
   const current = state.current;
 
   if (current) {
     const character = state.entities[current];
 
     if (character) {
-      return character.progress.expansions.shadowlands.seasons.one;
+      return character.progress;
     }
   }
 }
@@ -113,11 +105,11 @@ export function selectCurrentCharacter(state: RootState) {
   }
 }
 
-export function selectShadowlandsSeasonOneProgress(state: RootState) {
+export function selectProgress(state: RootState) {
   const current = selectCurrentCharacter(state);
 
   if (current) {
-    return current.progress.expansions.shadowlands.seasons.one;
+    return current.progress;
   }
 }
 

@@ -7,7 +7,7 @@ import { useAppDispatch } from "../redux/store";
 import { shadowlandsDungeons } from "../model/character";
 import {
   selectCurrentCharacter,
-  selectShadowlandsSeasonOneProgress,
+  selectProgress,
   toggleWeeklyAnima,
   toggleWeeklyMawSouls,
   toggleWeeklyBonusEvent,
@@ -16,7 +16,7 @@ import {
 
 export default function CharacterProgress() {
   const character = useSelector(selectCurrentCharacter);
-  const progress = useSelector(selectShadowlandsSeasonOneProgress);
+  const progress = useSelector(selectProgress);
   const dispatch = useAppDispatch();
 
   if (!(character && progress)) {
