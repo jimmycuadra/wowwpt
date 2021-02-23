@@ -8,6 +8,10 @@ import { shadowlandsDungeons } from "../model/character";
 import {
   selectCurrentCharacter,
   selectProgress,
+  setRaidLFR,
+  setRaidNormal,
+  setRaidHeroic,
+  setRaidMythic,
   toggleWeeklyAnima,
   toggleWeeklyMawSouls,
   toggleWeeklyBonusEvent,
@@ -79,19 +83,19 @@ export default function CharacterProgress() {
 
         <Form.Group controlId="raidLFR">
           <Form.Label>Looking For Raid bosses defeated: {progress.raid.lfr}</Form.Label>
-          <Form.Control type="range" min={0} max={10} defaultValue={progress.raid.lfr} />
+          <Form.Control type="range" min={0} max={10} defaultValue={progress.raid.lfr} onChange={(e) => dispatch(setRaidLFR(parseInt(e.target.value, 10)))} />
         </Form.Group>
         <Form.Group controlId="raidNormal">
           <Form.Label>Normal bosses defeated: {progress.raid.normal}</Form.Label>
-          <Form.Control type="range" min={0} max={10} defaultValue={progress.raid.normal} />
+          <Form.Control type="range" min={0} max={10} defaultValue={progress.raid.normal} onChange={(e) => dispatch(setRaidNormal(parseInt(e.target.value, 10)))} />
         </Form.Group>
         <Form.Group controlId="raidHeroic">
           <Form.Label>Heroic bosses defeated: {progress.raid.heroic}</Form.Label>
-          <Form.Control type="range" min={0} max={10} defaultValue={progress.raid.heroic} />
+          <Form.Control type="range" min={0} max={10} defaultValue={progress.raid.heroic} onChange={(e) => dispatch(setRaidHeroic(parseInt(e.target.value, 10)))} />
         </Form.Group>
         <Form.Group controlId="raidMythic">
           <Form.Label>Mythic bosses defeated: {progress.raid.mythic}</Form.Label>
-          <Form.Control type="range" min={0} max={10} defaultValue={progress.raid.mythic} />
+          <Form.Control type="range" min={0} max={10} defaultValue={progress.raid.mythic} onChange={(e) => dispatch(setRaidMythic(parseInt(e.target.value, 10)))} />
         </Form.Group>
 
         <h4>Mythic Plus Dungeons</h4>

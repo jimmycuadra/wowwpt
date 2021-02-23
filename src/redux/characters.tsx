@@ -1,4 +1,4 @@
-import { EntityState, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { EntityState, PayloadAction, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 
 import { RootState } from "./store";
 import { Character } from "../model/character";
@@ -46,8 +46,36 @@ const characters = createSlice({
         state.current = id;
       }
     },
-    chooseCharacter(state, action) {
+    chooseCharacter(state, action: PayloadAction<number>) {
       state.current = action.payload;
+    },
+    setRaidLFR(state, action: PayloadAction<number>) {
+      const progress = getProgress(state);
+
+      if (progress) {
+        progress.raid.lfr = action.payload;
+      }
+    },
+    setRaidNormal(state, action: PayloadAction<number>) {
+      const progress = getProgress(state);
+
+      if (progress) {
+        progress.raid.normal = action.payload;
+      }
+    },
+    setRaidHeroic(state, action: PayloadAction<number>) {
+      const progress = getProgress(state);
+
+      if (progress) {
+        progress.raid.heroic = action.payload;
+      }
+    },
+    setRaidMythic(state, action: PayloadAction<number>) {
+      const progress = getProgress(state);
+
+      if (progress) {
+        progress.raid.mythic = action.payload;
+      }
     },
     toggleWeeklyAnima(state) {
       const progress = getProgress(state);
@@ -116,6 +144,10 @@ export function selectProgress(state: RootState) {
 export const {
   addCharacter,
   chooseCharacter,
+  setRaidLFR,
+  setRaidNormal,
+  setRaidHeroic,
+  setRaidMythic,
   toggleWeeklyAnima,
   toggleWeeklyMawSouls,
   toggleWeeklyBonusEvent,
