@@ -53,6 +53,11 @@ const characters = createSlice({
         progress.mythicPlus.push(action.payload);
       }
     },
+    clearAllData(state) {
+      charactersAdapter.removeAll(state);
+      state.current = null;
+      state.nextId = 1;
+    },
     chooseCharacter(state, action: PayloadAction<number>) {
       state.current = action.payload;
     },
@@ -151,6 +156,7 @@ export function selectProgress(state: RootState) {
 export const {
   addCharacter,
   addMythicPlusDungeonRun,
+  clearAllData,
   chooseCharacter,
   setRaidLFR,
   setRaidNormal,
