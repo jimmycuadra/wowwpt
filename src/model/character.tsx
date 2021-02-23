@@ -32,6 +32,7 @@ export interface Progress {
   raid: Raid,
   weeklyAnima: boolean,
   weeklyMawSouls: boolean,
+  weeklyVenari: boolean,
   weeklyBonusEvent: boolean,
   worldBoss: boolean,
 }

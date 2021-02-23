@@ -22,6 +22,7 @@ import {
   setRaidMythic,
   toggleWeeklyAnima,
   toggleWeeklyMawSouls,
+  toggleWeeklyVenari,
   toggleWeeklyBonusEvent,
   toggleWorldBoss,
 } from "../redux/characters";
@@ -124,6 +125,12 @@ export default function CharacterProgress() {
                 name="weeklyMawSouls"
                 checked={progress.weeklyMawSouls}
                 onChange={() => dispatch(toggleWeeklyMawSouls())}
+              />
+              <Form.Check
+                label="Weekly Ve'nari quests"
+                name="weeklyVenari"
+                checked={progress.weeklyVenari}
+                onChange={() => dispatch(toggleWeeklyVenari())}
               />
               <Form.Check
                 label="Weekly bonus event quest"

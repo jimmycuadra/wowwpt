@@ -34,6 +34,7 @@ const characters = createSlice({
           },
           weeklyAnima: false,
           weeklyMawSouls: false,
+          weeklyVenari: false,
           weeklyBonusEvent: false,
           worldBoss: false,
         },
@@ -117,6 +118,13 @@ const characters = createSlice({
         progress.weeklyAnima = !progress.weeklyAnima;
       }
     },
+    toggleWeeklyVenari(state) {
+      const progress = getProgress(state);
+
+      if (progress) {
+        progress.weeklyVenari = !progress.weeklyVenari;
+      }
+    },
     toggleWeeklyMawSouls(state) {
       const progress = getProgress(state);
 
@@ -163,6 +171,7 @@ function resetProgress(progress: Progress) {
   };
   progress.weeklyAnima = false;
   progress.weeklyMawSouls = false;
+  progress.weeklyVenari = false;
   progress.weeklyBonusEvent = false;
   progress.worldBoss = false;
 }
@@ -202,6 +211,7 @@ export const {
   setRaidMythic,
   toggleWeeklyAnima,
   toggleWeeklyMawSouls,
+  toggleWeeklyVenari,
   toggleWeeklyBonusEvent,
   toggleWorldBoss,
 } = characters.actions;
