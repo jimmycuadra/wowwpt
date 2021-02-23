@@ -8,4 +8,7 @@ export interface Character {
 export const regions = {
   us: "NA",
   eu: "EU",
+  kr: "KR",
+  tw: "TW",
+  cn: "CN",
 }

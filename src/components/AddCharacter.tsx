@@ -42,6 +42,9 @@ export default function AddCharacter() {
           <Form.Control as="select" value={region} onChange={(e) => setRegion(e.target.value)}>
             <option value="us">North America</option>
             <option value="eu">Europe</option>
+            <option value="kr">Korea</option>
+            <option value="tw">Taiwan</option>
+            <option value="cn">China</option>
           </Form.Control>
         </Form.Group>
         <Button variant="primary" type="submit">Add character</Button>
