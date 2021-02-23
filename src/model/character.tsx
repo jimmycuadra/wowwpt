@@ -1,11 +1,3 @@
-export const regions = {
-  us: "NA",
-  eu: "EU",
-  kr: "KR",
-  tw: "TW",
-  cn: "CN",
-}
-
 export const shadowlandsDungeons = [
     "De Other Side",
     "Halls of Atonement",
@@ -31,7 +23,7 @@ export interface Character {
   id: number,
   name: string,
   realm: string,
-  region: "us" | "eu",
+  region: string,
   progress: Progress,
 }
 

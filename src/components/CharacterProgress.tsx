@@ -9,6 +9,7 @@ import Row from "react-bootstrap/Row";
 import "./CharacterProgress.css";
 import { useAppDispatch } from "../redux/store";
 import { Dungeon, shadowlandsDungeons } from "../model/character";
+import { regions } from "../model/region";
 import {
   addMythicPlusDungeonRun,
   deleteMythicPlusDungeonRun,
@@ -98,7 +99,7 @@ export default function CharacterProgress() {
                 dispatch(resetCharacter())
               }
             }}>Reset {character.name}</Button>
-            <h3>{character.name}</h3>
+            <h3>Weekly progress for {character.name}-{character.realm} ({regions[character.region].long})</h3>
           </Col>
         </Row>
         <Form onSubmit={handleSubmit}>

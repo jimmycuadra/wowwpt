@@ -7,7 +7,7 @@ import "./CharacterSelect.css";
 import { useAppDispatch } from "../redux/store";
 import { chooseCharacter, resetAllCharacters, selectAllCharacters, selectCurrentCharacter } from "../redux/characters";
 import AddCharacter from "./AddCharacter";
-import { regions } from "../model/character";
+import { regions } from "../model/region";
 
 export default function CharacterSelect() {
   const dispatch = useAppDispatch();
@@ -17,7 +17,7 @@ export default function CharacterSelect() {
   const charactersContent = characters.map((character) => {
     return (
       <option key={character.id} value={character.id}>
-        {`${character.name}-${character.realm} (${regions[character.region]})`}
+        {`${character.name}-${character.realm} (${regions[character.region].short})`}
       </option>
     );
   });
