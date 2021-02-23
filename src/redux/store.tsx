@@ -9,6 +9,11 @@ const initialState = storedState ? JSON.parse(storedState) : {};
 
 const store = configureStore({
   reducer: {
+    schema: () => {
+      return {
+        version: 1,
+      }
+    },
     characters: charactersReducer,
   },
   preloadedState: initialState,
