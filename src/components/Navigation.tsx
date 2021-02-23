@@ -4,14 +4,14 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
 import { useAppDispatch } from "../redux/store";
-import { clearAllData } from "../redux/characters";
+import { deleteAllData } from "../redux/characters";
 
 export default function Navigation() {
   const dispatch = useAppDispatch();
 
-  function handleClearAllData() {
+  function handleClick() {
     if (window.confirm("Are you sure you want to clear all data?")) {
-      dispatch(clearAllData());
+      dispatch(deleteAllData());
     }
   }
 
@@ -21,7 +21,7 @@ export default function Navigation() {
       <Navbar.Collapse className="justify-content-end">
         <Nav>
           <Nav.Item>
-            <Button variant="danger" onClick={handleClearAllData}>Clear All Data</Button>
+            <Button variant="danger" onClick={handleClick}>Delete All Data</Button>
           </Nav.Item>
         </Nav>
       </Navbar.Collapse>

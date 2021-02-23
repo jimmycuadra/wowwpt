@@ -12,6 +12,7 @@ import { Dungeon, shadowlandsDungeons } from "../model/character";
 import {
   addMythicPlusDungeonRun,
   deleteMythicPlusDungeonRun,
+  resetCharacter,
   selectCurrentCharacter,
   selectProgress,
   setRaidLFR,
@@ -89,9 +90,17 @@ export default function CharacterProgress() {
 
   return (
     <>
-      <h3>{character.name}</h3>
-
       <Container fluid className="character-progress">
+        <Row>
+          <Col>
+            <Button variant="danger" className="float-right" onClick={() => {
+              if (window.confirm(`Are you sure you want to reset all data for ${character.name}?`)) {
+                dispatch(resetCharacter())
+              }
+            }}>Reset {character.name}</Button>
+            <h3>{character.name}</h3>
+          </Col>
+        </Row>
         <Form onSubmit={handleSubmit}>
           <Row>
             <Col xl={4}>
@@ -127,19 +136,19 @@ export default function CharacterProgress() {
 
               <Form.Group controlId="raidLFR">
                 <Form.Label>Looking For Raid bosses defeated: {progress.raid.lfr}</Form.Label>
-                <Form.Control type="range" min={0} max={10} defaultValue={progress.raid.lfr} onChange={(e) => dispatch(setRaidLFR(parseInt(e.target.value, 10)))} />
+                <Form.Control type="range" min={0} max={10} value={progress.raid.lfr} onChange={(e) => dispatch(setRaidLFR(parseInt(e.target.value, 10)))} />
               </Form.Group>
               <Form.Group controlId="raidNormal">
                 <Form.Label>Normal bosses defeated: {progress.raid.normal}</Form.Label>
-                <Form.Control type="range" min={0} max={10} defaultValue={progress.raid.normal} onChange={(e) => dispatch(setRaidNormal(parseInt(e.target.value, 10)))} />
+                <Form.Control type="range" min={0} max={10} value={progress.raid.normal} onChange={(e) => dispatch(setRaidNormal(parseInt(e.target.value, 10)))} />
               </Form.Group>
               <Form.Group controlId="raidHeroic">
                 <Form.Label>Heroic bosses defeated: {progress.raid.heroic}</Form.Label>
-                <Form.Control type="range" min={0} max={10} defaultValue={progress.raid.heroic} onChange={(e) => dispatch(setRaidHeroic(parseInt(e.target.value, 10)))} />
+                <Form.Control type="range" min={0} max={10} value={progress.raid.heroic} onChange={(e) => dispatch(setRaidHeroic(parseInt(e.target.value, 10)))} />
               </Form.Group>
               <Form.Group controlId="raidMythic">
                 <Form.Label>Mythic bosses defeated: {progress.raid.mythic}</Form.Label>
-                <Form.Control type="range" min={0} max={10} defaultValue={progress.raid.mythic} onChange={(e) => dispatch(setRaidMythic(parseInt(e.target.value, 10)))} />
+                <Form.Control type="range" min={0} max={10} value={progress.raid.mythic} onChange={(e) => dispatch(setRaidMythic(parseInt(e.target.value, 10)))} />
               </Form.Group>
             </Col>
           </Row>

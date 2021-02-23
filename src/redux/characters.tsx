@@ -53,19 +53,36 @@ const characters = createSlice({
         progress.mythicPlus.push(action.payload);
       }
     },
-    clearAllData(state) {
+    chooseCharacter(state, action: PayloadAction<number>) {
+      state.current = action.payload;
+    },
+    deleteAllData(state) {
       charactersAdapter.removeAll(state);
       state.current = null;
       state.nextId = 1;
-    },
-    chooseCharacter(state, action: PayloadAction<number>) {
-      state.current = action.payload;
     },
     deleteMythicPlusDungeonRun(state, action: PayloadAction<number>) {
       const progress = getProgress(state);
 
       if (progress) {
         progress.mythicPlus.splice(action.payload, 1);
+      }
+    },
+    resetCharacter(state) {
+      const progress = getProgress(state);
+
+      if (progress) {
+        progress.mythicPlus = [];
+        progress.raid = {
+          lfr: 0,
+          normal: 0,
+          heroic: 0,
+          mythic: 0,
+        };
+        progress.weeklyAnima = false;
+        progress.weeklyMawSouls = false;
+        progress.weeklyBonusEvent = false;
+        progress.worldBoss = false;
       }
     },
     setRaidLFR(state, action: PayloadAction<number>) {
@@ -163,9 +180,10 @@ export function selectProgress(state: RootState) {
 export const {
   addCharacter,
   addMythicPlusDungeonRun,
-  clearAllData,
   chooseCharacter,
+  deleteAllData,
   deleteMythicPlusDungeonRun,
+  resetCharacter,
   setRaidLFR,
   setRaidNormal,
   setRaidHeroic,
