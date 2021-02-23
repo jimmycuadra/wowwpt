@@ -1,17 +1,19 @@
-import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { EntityState, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 
 import { RootState } from "./store";
 import { Character } from "../model/character";
 
 const charactersAdapter = createEntityAdapter<Character>();
 
+interface CharactersState extends EntityState<Character> {
+  current: number | null,
+  nextId: number,
+}
+
 const initialState = charactersAdapter.getInitialState({
   current: null,
   nextId: 1,
-} as {
-  current: number | null,
-  nextId: number,
-});
+} as CharactersState);
 
 const characters = createSlice({
   name: "characters",
@@ -22,6 +24,27 @@ const characters = createSlice({
 
       charactersAdapter.addOne(state, {
         id,
+        progress: {
+          expansions: {
+            shadowlands: {
+              seasons: {
+                one: {
+                  mythicPlus: [],
+                  raid: {
+                    lfr: 0,
+                    normal: 0,
+                    heroic: 0,
+                    mythic: 0,
+                  },
+                  weeklyAnima: false,
+                  weeklyMawSouls: false,
+                  weeklyBonusEvent: false,
+                  worldBoss: false,
+                }
+              },
+            }
+          },
+        },
         ...action.payload
       });
 
@@ -34,8 +57,48 @@ const characters = createSlice({
     chooseCharacter(state, action) {
       state.current = action.payload;
     },
+    toggleWeeklyAnima(state) {
+      const progress = getShadowlandsSeasonOneProgress(state);
+
+      if (progress) {
+        progress.weeklyAnima = !progress.weeklyAnima;
+      }
+    },
+    toggleWeeklyMawSouls(state) {
+      const progress = getShadowlandsSeasonOneProgress(state);
+
+      if (progress) {
+        progress.weeklyMawSouls = !progress.weeklyMawSouls;
+      }
+    },
+    toggleWeeklyBonusEvent(state) {
+      const progress = getShadowlandsSeasonOneProgress(state);
+
+      if (progress) {
+        progress.weeklyBonusEvent = !progress.weeklyBonusEvent;
+      }
+    },
+    toggleWorldBoss(state) {
+      const progress = getShadowlandsSeasonOneProgress(state);
+
+      if (progress) {
+        progress.worldBoss = !progress.worldBoss;
+      }
+    }
   },
 });
+
+function getShadowlandsSeasonOneProgress(state: CharactersState) {
+  const current = state.current;
+
+  if (current) {
+    const character = state.entities[current];
+
+    if (character) {
+      return character.progress.expansions.shadowlands.seasons.one;
+    }
+  }
+}
 
 export const {
   selectAll: selectAllCharacters,
@@ -50,9 +113,21 @@ export function selectCurrentCharacter(state: RootState) {
   }
 }
 
+export function selectShadowlandsSeasonOneProgress(state: RootState) {
+  const current = selectCurrentCharacter(state);
+
+  if (current) {
+    return current.progress.expansions.shadowlands.seasons.one;
+  }
+}
+
 export const {
   addCharacter,
   chooseCharacter,
+  toggleWeeklyAnima,
+  toggleWeeklyMawSouls,
+  toggleWeeklyBonusEvent,
+  toggleWorldBoss,
 } = characters.actions;
 
 export default characters.reducer;
