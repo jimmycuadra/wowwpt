@@ -6,7 +6,11 @@ import { useAppDispatch } from "../redux/store";
 import { addCharacter } from "../redux/characters";
 import { regions } from "../model/region";
 
-export default function AddCharacter() {
+interface Props {
+  setAddingNewCharacter: React.Dispatch<React.SetStateAction<boolean>>,
+}
+
+export default function AddCharacter({ setAddingNewCharacter }: Props) {
   const dispatch = useAppDispatch();
   const [name, setName] = useState("");
   const [realm, setRealm] = useState("");
@@ -14,6 +18,10 @@ export default function AddCharacter() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    if (name.length < 1 || realm.length < 1) {
+      return;
+    }
 
     dispatch(addCharacter({
       name,
@@ -24,6 +32,8 @@ export default function AddCharacter() {
     setName("");
     setRealm("");
     setRegion("us");
+
+    setAddingNewCharacter(false);
   }
 
   return (

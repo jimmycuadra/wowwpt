@@ -6,8 +6,8 @@ import Col from "react-bootstrap/Col";
 import "./App.css";
 
 import CharacterProgress from "./CharacterProgress";
-import CharacterSelect from "./CharacterSelect";
 import Navigation from "./Navigation";
+import Sidebar from "./Sidebar";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Container fluid>
           <Row>
             <Col xl={2}>
-              <CharacterSelect />
+              <Sidebar />
             </Col>
             <Col>
               <CharacterProgress />

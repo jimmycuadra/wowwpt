@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import "./CharacterSelect.css";
 import { useAppDispatch } from "../redux/store";
 import { chooseCharacter, resetAllCharacters, selectAllCharacters, selectCurrentCharacter } from "../redux/characters";
-import AddCharacter from "./AddCharacter";
 import { regions } from "../model/region";
 
 export default function CharacterSelect() {
@@ -57,8 +56,6 @@ export default function CharacterSelect() {
       <h3>Characters</h3>
 
       {characters.length > 0 && characterSelect}
-
-      <AddCharacter />
     </>
   );
 }
