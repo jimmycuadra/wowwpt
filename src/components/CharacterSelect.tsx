@@ -23,7 +23,7 @@ export default function CharacterSelect() {
 
   const characterSelect = (
     <>
-      <p className="text-muted">Select a character.</p>
+      <p className="text-muted">Select a character</p>
 
       <Form className="character-select-section">
         <Form.Control as="select" value={currentCharacter ? currentCharacter.id : characters[0].id} onChange={(e) => {
@@ -40,7 +40,7 @@ export default function CharacterSelect() {
       </Form>
 
       <div className="character-select-section">
-        <p className="text-muted">Reset all characters.</p>
+        <p className="text-muted">Manage characters</p>
 
         <Button variant="danger" onClick={() => {
           if (window.confirm("Are you sure you want to reset weekly progress for all characters?")) {

@@ -7,10 +7,11 @@ import { addCharacter } from "../redux/characters";
 import { regions } from "../model/region";
 
 interface Props {
+  charactersExist: boolean,
   setAddingNewCharacter: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
-export default function AddCharacter({ setAddingNewCharacter }: Props) {
+export default function AddCharacter({ charactersExist, setAddingNewCharacter }: Props) {
   const dispatch = useAppDispatch();
   const [name, setName] = useState("");
   const [realm, setRealm] = useState("");
@@ -59,6 +60,12 @@ export default function AddCharacter({ setAddingNewCharacter }: Props) {
           </Form.Control>
         </Form.Group>
         <Button variant="primary" type="submit">Add character</Button>
+        {charactersExist &&
+          <>
+            &nbsp;
+            <Button variant="secondary" type="button" onClick={() => setAddingNewCharacter(false)}>Cancel</Button>
+          </>
+        }
       </Form>
     </>
   );

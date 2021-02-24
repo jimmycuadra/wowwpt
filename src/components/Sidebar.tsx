@@ -11,15 +11,13 @@ export default function Sidebar() {
   const [addingNewCharacter, setAddingNewCharacter] = useState(false);
 
   if (addingNewCharacter || characters.length < 1) {
-    return <AddCharacter setAddingNewCharacter={setAddingNewCharacter} />;
+    return <AddCharacter setAddingNewCharacter={setAddingNewCharacter} charactersExist={characters.length > 0} />;
   } else {
     return (
       <>
         <CharacterSelect />
 
-        <p className="text-muted">Add a new character.</p>
-
-        <Button variant="primary" onClick={() => setAddingNewCharacter(true)}>Add character</Button>
+        <Button variant="primary" onClick={() => setAddingNewCharacter(true)}>Add new character</Button>
       </>
     );
   }
