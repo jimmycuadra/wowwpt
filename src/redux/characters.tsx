@@ -43,9 +43,7 @@ const characters = createSlice({
 
       state.nextId++;
 
-      if (!state.current)  {
-        state.current = id;
-      }
+      state.current = id;
     },
     addMythicPlusDungeonRun(state, action: PayloadAction<MythicPlus>) {
       const progress = getProgress(state);
