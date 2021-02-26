@@ -30,16 +30,14 @@ export default function CharacterProgress() {
         </Col>
       </Row>
       <Row>
-        <Col xl={4}>
+        <Col sm="auto">
           <QuestProgress progress={progress} />
         </Col>
         <Col>
           <RaidProgress progress={progress} />
         </Col>
-      </Row>
-      <Row>
         <Col>
-        <MythicPlusProgress progress={progress} />
+          <MythicPlusProgress progress={progress} />
         </Col>
       </Row>
     </Container>
