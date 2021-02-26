@@ -44,6 +44,8 @@ export interface Raid {
   mythic: number,
 }
 
+export type RaidDifficulty = keyof Raid;
+
 export interface MythicPlus {
   dungeon: Dungeon,
   level: number,
