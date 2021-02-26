@@ -8,6 +8,7 @@ import "./CharacterProgress.css";
 import QuestProgress from "./QuestProgress";
 import RaidProgress from "./RaidProgress";
 import MythicPlusProgress from "./MythicPlusProgress";
+import VaultRewards from "./VaultRewards";
 import {
   selectCurrentCharacter,
   selectProgress,
@@ -27,6 +28,11 @@ export default function CharacterProgress() {
       <Row>
         <Col>
           <h3>Weekly progress for {character.name}-{character.realm} ({regions[character.region].long})</h3>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <VaultRewards />
         </Col>
       </Row>
       <Row className="mx-sm-n5">
