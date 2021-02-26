@@ -23,20 +23,20 @@ export default function CharacterProgress() {
   }
 
   return (
-    <Container fluid className="character-progress">
+    <Container fluid className="character-progress px-sm-5">
       <Row>
         <Col>
           <h3>Weekly progress for {character.name}-{character.realm} ({regions[character.region].long})</h3>
         </Col>
       </Row>
-      <Row>
-        <Col sm="auto">
+      <Row className="mx-sm-n5">
+        <Col sm="auto" className="px-sm-5">
           <QuestProgress progress={progress} />
         </Col>
-        <Col sm="auto">
+        <Col className="px-sm-5">
           <RaidProgress progress={progress} />
         </Col>
-        <Col>
+        <Col className="px-sm-5">
           <MythicPlusProgress progress={progress} />
         </Col>
       </Row>
