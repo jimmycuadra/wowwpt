@@ -40,7 +40,7 @@ export default function MythicPlusProgress({ progress }: Props) {
     setAddingNewRun(false);
   }
 
-  if (addingNewRun || progress.mythicPlus.length  < 1) {
+  if (addingNewRun || progress.mythicPlus.length < 1) {
     return (
       <>
         {heading}
@@ -65,6 +65,12 @@ export default function MythicPlusProgress({ progress }: Props) {
             />
           </Form.Group>
           <Button variant="primary" type="submit">Add M+ dungeon run</Button>
+          {progress.mythicPlus.length > 0 &&
+            <>
+              &nbsp;
+              <Button variant="secondary" type="button" onClick={() => setAddingNewRun(false)}>Cancel</Button>
+            </>
+          }
         </Form>
       </>
     );
