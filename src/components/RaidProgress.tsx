@@ -16,6 +16,23 @@ interface Props {
 
 export default function RaidProgress({ progress }: Props) {
   const dispatch = useAppDispatch();
+  const raidProgress = progress.raid;
+  const min = 0;
+  const max = 10;
+
+  function handleChange(inputValue: string, currentValue: number, callback: Function) {
+    let value = parseInt(inputValue, 10);
+
+    if (isNaN(value)) {
+      return dispatch(callback(currentValue));
+    } else if (value < min) {
+      value = min;
+    } else if (value > max) {
+      value = max;
+    }
+
+    dispatch(callback(value));
+  }
 
   return (
     <>
@@ -23,20 +40,20 @@ export default function RaidProgress({ progress }: Props) {
 
       <Form>
         <Form.Group controlId="raidLFR">
-          <Form.Label>Looking For Raid bosses defeated: {progress.raid.lfr}</Form.Label>
-          <Form.Control type="range" min={0} max={10} value={progress.raid.lfr} onChange={(e) => dispatch(setRaidLFR(parseInt(e.target.value, 10)))} />
+          <Form.Label>Looking For Raid bosses defeated</Form.Label>
+          <Form.Control type="number" min={min} max={max} value={raidProgress.lfr} onChange={(e) => handleChange(e.target.value, raidProgress.lfr, setRaidLFR)} />
         </Form.Group>
         <Form.Group controlId="raidNormal">
-          <Form.Label>Normal bosses defeated: {progress.raid.normal}</Form.Label>
-          <Form.Control type="range" min={0} max={10} value={progress.raid.normal} onChange={(e) => dispatch(setRaidNormal(parseInt(e.target.value, 10)))} />
+          <Form.Label>Normal bosses defeated</Form.Label>
+          <Form.Control type="number" min={min} max={max} value={raidProgress.normal} onChange={(e) => handleChange(e.target.value, raidProgress.normal, setRaidNormal)} />
         </Form.Group>
         <Form.Group controlId="raidHeroic">
-          <Form.Label>Heroic bosses defeated: {progress.raid.heroic}</Form.Label>
-          <Form.Control type="range" min={0} max={10} value={progress.raid.heroic} onChange={(e) => dispatch(setRaidHeroic(parseInt(e.target.value, 10)))} />
+          <Form.Label>Heroic bosses defeated</Form.Label>
+          <Form.Control type="number" min={min} max={max} value={raidProgress.heroic} onChange={(e) => handleChange(e.target.value, raidProgress.heroic, setRaidHeroic)} />
         </Form.Group>
         <Form.Group controlId="raidMythic">
-          <Form.Label>Mythic bosses defeated: {progress.raid.mythic}</Form.Label>
-          <Form.Control type="range" min={0} max={10} value={progress.raid.mythic} onChange={(e) => dispatch(setRaidMythic(parseInt(e.target.value, 10)))} />
+          <Form.Label>Mythic bosses defeated</Form.Label>
+          <Form.Control type="number" min={min} max={max} value={raidProgress.mythic} onChange={(e) => handleChange(e.target.value, raidProgress.mythic, setRaidMythic)} />
         </Form.Group>
       </Form>
     </>

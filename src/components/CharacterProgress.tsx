@@ -33,7 +33,7 @@ export default function CharacterProgress() {
         <Col sm="auto">
           <QuestProgress progress={progress} />
         </Col>
-        <Col>
+        <Col sm="auto">
           <RaidProgress progress={progress} />
         </Col>
         <Col>
