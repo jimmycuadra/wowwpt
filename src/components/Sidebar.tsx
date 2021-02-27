@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 
 import { useAppDispatch } from "../redux/store";
 import {
+  deleteAllData,
   resetAllCharacters,
   resetCharacter,
   selectAllCharacters,
@@ -17,6 +18,12 @@ export default function Sidebar() {
   const character = useSelector(selectCurrentCharacter);
   const dispatch = useAppDispatch();
   const [addingNewCharacter, setAddingNewCharacter] = useState(false);
+
+  function handleClickDeleteAllData() {
+    if (window.confirm("Are you sure you want to clear all data?")) {
+      dispatch(deleteAllData());
+    }
+  }
 
   if (addingNewCharacter || characters.length < 1) {
     return <AddCharacter setAddingNewCharacter={setAddingNewCharacter} charactersExist={characters.length > 0} />;
@@ -46,6 +53,9 @@ export default function Sidebar() {
                   dispatch(resetAllCharacters());
                 }
               }}>Reset all characters</Button>
+            </div>
+            <div className="character-select-section">
+              <Button variant="danger" onClick={handleClickDeleteAllData}>Delete All Data</Button>
             </div>
           </>
         }
