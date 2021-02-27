@@ -42,7 +42,7 @@ export default function CharacterSelect() {
 
   return (
     <>
-      <h3>Characters</h3>
+      <h4>Characters</h4>
 
       {characters.length > 0 && characterSelect}
     </>
