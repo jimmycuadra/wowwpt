@@ -28,27 +28,27 @@ export default function Sidebar() {
 
         <p className="text-muted">Manage data</p>
 
-        <div className="character-select-section">
+        <div className="mb-sm-3">
           <Button variant="primary" block onClick={() => setAddingNewCharacter(true)}>Add new character</Button>
         </div>
 
         {character &&
           <>
-            <div className="character-select-section">
+            <div className="mb-sm-3">
               <Button variant="danger" block onClick={() => {
                 if (window.confirm(`Are you sure you want to reset all progress for ${character.name}?`)) {
                   dispatch(resetCharacter())
                 }
               }}>Reset progress for {character.name}</Button>
             </div>
-            <div className="character-select-section">
+            <div className="mb-sm-3">
               <Button variant="danger" block onClick={() => {
                 if (window.confirm("Are you sure you want to reset all progress for all characters?")) {
                   dispatch(resetAllCharacters());
                 }
               }}>Reset progress for all characters</Button>
             </div>
-            <div className="character-select-section">
+            <div className="mb-sm-3">
               <Button variant="danger" block onClick={() => {
                 if (window.confirm("Are you sure you want to delete all data?")) {
                   dispatch(deleteAllData());

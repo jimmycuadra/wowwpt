@@ -2,7 +2,6 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import { useSelector } from "react-redux";
 
-import "./CharacterSelect.css";
 import { useAppDispatch } from "../redux/store";
 import { chooseCharacter, selectAllCharacters, selectCurrentCharacter } from "../redux/characters";
 import { regions } from "../model/region";
@@ -24,7 +23,7 @@ export default function CharacterSelect() {
     <>
       <p className="text-muted">Select a character</p>
 
-      <Form className="character-select-section">
+      <Form className="mb-sm-4">
         <Form.Control as="select" value={currentCharacter ? currentCharacter.id : characters[0].id} onChange={(e) => {
           const id = parseInt(e.target.value, 10);
 
