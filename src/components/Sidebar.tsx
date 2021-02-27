@@ -19,12 +19,6 @@ export default function Sidebar() {
   const dispatch = useAppDispatch();
   const [addingNewCharacter, setAddingNewCharacter] = useState(false);
 
-  function handleClickDeleteAllData() {
-    if (window.confirm("Are you sure you want to clear all data?")) {
-      dispatch(deleteAllData());
-    }
-  }
-
   if (addingNewCharacter || characters.length < 1) {
     return <AddCharacter setAddingNewCharacter={setAddingNewCharacter} charactersExist={characters.length > 0} />;
   } else {
@@ -32,30 +26,34 @@ export default function Sidebar() {
       <>
         <CharacterSelect />
 
-        <p className="text-muted">Manage characters</p>
+        <p className="text-muted">Manage data</p>
 
         <div className="character-select-section">
-          <Button variant="primary" onClick={() => setAddingNewCharacter(true)}>Add new character</Button>
+          <Button variant="primary" block onClick={() => setAddingNewCharacter(true)}>Add new character</Button>
         </div>
 
         {character &&
           <>
             <div className="character-select-section">
-              <Button variant="danger" onClick={() => {
-                if (window.confirm(`Are you sure you want to reset all data for ${character.name}?`)) {
+              <Button variant="danger" block onClick={() => {
+                if (window.confirm(`Are you sure you want to reset all progress for ${character.name}?`)) {
                   dispatch(resetCharacter())
                 }
-              }}>Reset {character.name}</Button>
+              }}>Reset progress for {character.name}</Button>
             </div>
             <div className="character-select-section">
-              <Button variant="danger" onClick={() => {
-                if (window.confirm("Are you sure you want to reset weekly progress for all characters?")) {
+              <Button variant="danger" block onClick={() => {
+                if (window.confirm("Are you sure you want to reset all progress for all characters?")) {
                   dispatch(resetAllCharacters());
                 }
-              }}>Reset all characters</Button>
+              }}>Reset progress for all characters</Button>
             </div>
             <div className="character-select-section">
-              <Button variant="danger" onClick={handleClickDeleteAllData}>Delete All Data</Button>
+              <Button variant="danger" block onClick={() => {
+                if (window.confirm("Are you sure you want to delete all data?")) {
+                  dispatch(deleteAllData());
+                }
+              }}>Delete all data</Button>
             </div>
           </>
         }
