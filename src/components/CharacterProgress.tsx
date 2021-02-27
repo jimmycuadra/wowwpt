@@ -29,7 +29,7 @@ export default function CharacterProgress() {
           <h3 className="mb-sm-5">Weekly progress for {character.name}-{character.realm} ({regions[character.region].long})</h3>
         </Col>
       </Row>
-      <Row>
+      <Row className="mb-sm-5">
         <Col>
           <VaultRewards />
         </Col>

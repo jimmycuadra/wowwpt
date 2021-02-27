@@ -57,7 +57,7 @@ export default function VaultRewards() {
   const mythicPlus4 = mythicPlusItemLevel(4);
   const mythicPlus10 = mythicPlusItemLevel(10);
 
-  const defaultClassNames = "col-sm-3 border text-center";
+  const defaultClassNames = "col-sm-2 border text-center";
   const successClass = " table-success";
 
   const raid3ClassNames = raid3 ? defaultClassNames + successClass : defaultClassNames;
@@ -69,7 +69,7 @@ export default function VaultRewards() {
   const mythicPlus10ClassNames = mythicPlus10 ? defaultClassNames + successClass : defaultClassNames;
 
   return (
-    <div className="mb-5">
+    <>
       <h4>The Great Vault</h4>
 
       <p className="text-muted">The following rewards will be available next week.</p>
@@ -91,7 +91,7 @@ export default function VaultRewards() {
           </div>
         </div>
         <div className="row">
-          <div className="col-sm-1 border-0 text-right"><strong>Mythic&nbsp;Plus</strong></div>
+          <div className="col col-sm-1 border-0 text-right"><strong>Mythic&nbsp;Plus</strong></div>
           <div className={mythicPlus1ClassNames}>
             1 Dungeon<br />
             {mythicPlus1 || "Not yet unlocked"}
@@ -106,6 +106,6 @@ export default function VaultRewards() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
