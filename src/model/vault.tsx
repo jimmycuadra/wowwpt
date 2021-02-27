@@ -35,6 +35,8 @@ export const rewards: Rewards = {
     13: 223,
     14: 226,
     15: 226,
+    maxKeyLevel: 15,
+    maxItemLevel: 226,
   }
 }
 
@@ -65,4 +67,6 @@ interface RaidRewardMinMax {
 
 interface MythicPlusRewards {
   [key: number]: number,
+  maxKeyLevel: number,
+  maxItemLevel: number,
 }

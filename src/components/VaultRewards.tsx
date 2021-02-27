@@ -24,25 +24,49 @@ export default function VaultRewards() {
     }
   };
 
+  const mythicPlusSorted = [...progress.mythicPlus];
+
+  mythicPlusSorted.sort((a, b) => {
+    if (b.level > a.level) {
+      return 1;
+    } else if (a.level > b.level) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+
+  const mythicPlusItemLevel = (n: number) => {
+    if (mythicPlusSorted.length < n) {
+      return;
+    }
+
+    const keyLevel = mythicPlusSorted[n - 1].level;
+    const rewardLevel = keyLevel > rewards.mythicPlus.maxKeyLevel ?
+      rewards.mythicPlus.maxItemLevel :
+      rewards.mythicPlus[keyLevel];
+
+    return `+${keyLevel}: Item level ${rewardLevel}`;
+  };
+
   const raid3 = raidItemLevel(3);
   const raid7 = raidItemLevel(7);
   const raid10 = raidItemLevel(10);
 
-  let raid3ClassNames = "col-sm-3 border text-center";
-  let raid7ClassNames = raid3ClassNames;
-  let raid10ClassNames = raid3ClassNames;
+  const mythicPlus1 = mythicPlusItemLevel(1);
+  const mythicPlus4 = mythicPlusItemLevel(4);
+  const mythicPlus10 = mythicPlusItemLevel(10);
 
-  if (raid3) {
-    raid3ClassNames = raid3ClassNames + " table-success";
-  }
+  const defaultClassNames = "col-sm-3 border text-center";
+  const successClass = " table-success";
 
-  if (raid7) {
-    raid7ClassNames = raid7ClassNames + " table-success";
-  }
+  const raid3ClassNames = raid3 ? defaultClassNames + successClass : defaultClassNames;
+  const raid7ClassNames = raid7 ? defaultClassNames + successClass : defaultClassNames;
+  const raid10ClassNames = raid10 ? defaultClassNames + successClass : defaultClassNames;
 
-  if (raid10) {
-    raid10ClassNames = raid10ClassNames + " table-success";
-  }
+  const mythicPlus1ClassNames = mythicPlus1 ? defaultClassNames + successClass : defaultClassNames;
+  const mythicPlus4ClassNames = mythicPlus4 ? defaultClassNames + successClass : defaultClassNames;
+  const mythicPlus10ClassNames = mythicPlus10 ? defaultClassNames + successClass : defaultClassNames;
 
   return (
     <div className="mb-5">
@@ -68,9 +92,18 @@ export default function VaultRewards() {
         </div>
         <div className="row">
           <div className="col-sm-1 border-0 text-right"><strong>Mythic&nbsp;Plus</strong></div>
-          <div className="col-sm-3 border text-center">1 Dungeon</div>
-          <div className="col-sm-3 border text-center">4 Dungeons</div>
-          <div className="col-sm-3 border text-center">10 Dungeons</div>
+          <div className={mythicPlus1ClassNames}>
+            1 Dungeon<br />
+            {mythicPlus1 || "Not yet unlocked"}
+          </div>
+          <div className={mythicPlus4ClassNames}>
+            4 Dungeons<br />
+            {mythicPlus4 || "Not yet unlocked"}
+          </div>
+          <div className={mythicPlus10ClassNames}>
+            10 Dungeons<br />
+            {mythicPlus10 || "Not yet unlocked"}
+          </div>
         </div>
       </div>
     </div>
