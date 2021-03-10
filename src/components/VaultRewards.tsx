@@ -50,7 +50,7 @@ export default function VaultRewards() {
   };
 
   const raid3 = raidItemLevel(3);
-  const raid7 = raidItemLevel(7);
+  const raid6 = raidItemLevel(6);
   const raid9 = raidItemLevel(9);
 
   const mythicPlus1 = mythicPlusItemLevel(1);
@@ -61,7 +61,7 @@ export default function VaultRewards() {
   const successClass = " table-success";
 
   const raid3ClassNames = raid3 ? defaultClassNames + successClass : defaultClassNames;
-  const raid7ClassNames = raid7 ? defaultClassNames + successClass : defaultClassNames;
+  const raid6ClassNames = raid6 ? defaultClassNames + successClass : defaultClassNames;
   const raid9ClassNames = raid9 ? defaultClassNames + successClass : defaultClassNames;
 
   const mythicPlus1ClassNames = mythicPlus1 ? defaultClassNames + successClass : defaultClassNames;
@@ -81,9 +81,9 @@ export default function VaultRewards() {
             3 Bosses<br />
             {raid3 || "Not yet unlocked"}
           </div>
-          <div className={raid7ClassNames}>
+          <div className={raid6ClassNames}>
             7 Bosses<br />
-            {raid7 || "Not yet unlocked"}
+            {raid6 || "Not yet unlocked"}
           </div>
           <div className={raid9ClassNames}>
             9 Bosses<br />
