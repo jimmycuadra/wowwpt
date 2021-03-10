@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/wowwpt/static/js/main.bbbc630a.chunk.js",
-    "main.js.map": "/wowwpt/static/js/main.bbbc630a.chunk.js.map",
+    "main.js": "/wowwpt/static/js/main.cc1908d2.chunk.js",
+    "main.js.map": "/wowwpt/static/js/main.cc1908d2.chunk.js.map",
     "runtime-main.js": "/wowwpt/static/js/runtime-main.e809d66e.js",
     "runtime-main.js.map": "/wowwpt/static/js/runtime-main.e809d66e.js.map",
     "static/css/2.658248ec.chunk.css": "/wowwpt/static/css/2.658248ec.chunk.css",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.e809d66e.js",
     "static/css/2.658248ec.chunk.css",
     "static/js/2.cee239a1.chunk.js",
-    "static/js/main.bbbc630a.chunk.js"
+    "static/js/main.cc1908d2.chunk.js"
   ]
 }
