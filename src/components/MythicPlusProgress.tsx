@@ -20,6 +20,7 @@ export default function MythicPlusProgress({ progress }: Props) {
   const [level, setLevel] = useState(2);
   const [addingNewRun, setAddingNewRun] = useState(false);
   const heading = <h4>Mythic Plus Dungeons</h4>;
+  const tip = <p className="mt-sm-3 text-muted">Tip: Keystone levels 6, 9, 11, 13, and 15 result in the same level of vault rewards as the previous level.</p>;
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -72,6 +73,7 @@ export default function MythicPlusProgress({ progress }: Props) {
             </>
           }
         </Form>
+        {tip}
       </>
     );
   }
@@ -110,6 +112,7 @@ export default function MythicPlusProgress({ progress }: Props) {
     <>
       {heading}
       {mythicPlusRuns}
+      {tip}
     </>
   );
 }
