@@ -82,7 +82,7 @@ export default function VaultRewards() {
             {raid3 || "Not yet unlocked"}
           </div>
           <div className={raid6ClassNames}>
-            7 Bosses<br />
+            6 Bosses<br />
             {raid6 || "Not yet unlocked"}
           </div>
           <div className={raid9ClassNames}>
