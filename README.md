@@ -1,1 +1,1 @@
-# World of Warcraft Alt Tracker
+# World of Warcraft Weekly Progress Tracker
