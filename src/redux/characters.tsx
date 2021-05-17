@@ -1,7 +1,7 @@
 import { EntityState, PayloadAction, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 
 import { RootState } from "./store";
-import { Character, MythicPlus, Progress } from "../model/character";
+import { Character, MythicPlusRun, Progress } from "../model/character";
 
 const charactersAdapter = createEntityAdapter<Character>();
 
@@ -45,7 +45,7 @@ const characters = createSlice({
 
       state.current = id;
     },
-    addMythicPlusDungeonRun(state, action: PayloadAction<MythicPlus>) {
+    addMythicPlusDungeonRun(state, action: PayloadAction<MythicPlusRun>) {
       const progress = getProgress(state);
 
       if (progress) {

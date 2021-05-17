@@ -20,8 +20,8 @@ export interface Character {
 }
 
 export interface Progress {
-  mythicPlus: MythicPlus[],
-  raid: Raid,
+  mythicPlus: MythicPlusRun[],
+  raid: RaidProgress,
   weeklyAnima: boolean,
   weeklyMawSouls: boolean,
   weeklyVenari: boolean,
@@ -29,16 +29,11 @@ export interface Progress {
   worldBoss: boolean,
 }
 
-export interface Raid {
-  lfr: number,
-  normal: number,
-  heroic: number,
-  mythic: number,
-}
+export type RaidDifficulty = "lfr" | "normal" | "heroic" | "mythic";
 
-export type RaidDifficulty = keyof Raid;
+export type RaidProgress = Record<RaidDifficulty, number>;
 
-export interface MythicPlus {
+export interface MythicPlusRun {
   dungeon: Dungeon,
   level: number,
 }
