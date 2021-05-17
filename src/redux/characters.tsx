@@ -5,15 +5,19 @@ import { Character, MythicPlusRun, Progress } from "../model/character";
 
 const charactersAdapter = createEntityAdapter<Character>();
 
-interface CharactersState extends EntityState<Character> {
+interface CharactersExtraState {
   current: number | null,
   nextId: number,
 }
 
-const initialState = charactersAdapter.getInitialState({
+type CharactersState = EntityState<Character> & CharactersExtraState;
+
+const initialAdapterState: CharactersExtraState = {
   current: null,
   nextId: 1,
-} as CharactersState);
+};
+
+const initialState = charactersAdapter.getInitialState(initialAdapterState);
 
 const characters = createSlice({
   name: "characters",

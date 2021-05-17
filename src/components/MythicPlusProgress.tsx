@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 import { useAppDispatch } from "../redux/store";
-import { Dungeon, SHADOWLANDS_DUNGEONS } from "../model/dungeon";
+import { Dungeon, SHADOWLANDS_DUNGEONS, isDungeon } from "../model/dungeon";
 import {
   addMythicPlusDungeonRun,
   deleteMythicPlusDungeonRun,
@@ -16,11 +16,19 @@ interface Props {
 
 export default function MythicPlusProgress({ progress }: Props) {
   const dispatch = useAppDispatch();
-  const [dungeon, setDungeon] = useState("De Other Side" as Dungeon);
+  const [dungeon, setDungeon] = useState<Dungeon>("De Other Side");
   const [level, setLevel] = useState(2);
   const [addingNewRun, setAddingNewRun] = useState(false);
   const heading = <h4>Mythic Plus Dungeons</h4>;
   const tip = <p className="mt-sm-3 text-muted">Tip: Keystone levels 6, 9, 11, 13, and 15 result in the same level of vault rewards as the previous level.</p>;
+
+  function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    if (isDungeon(e.target.value)) {
+      setDungeon(e.target.value);
+    } else {
+      console.error(`Attempted to set dungeon to invalid value: ${e.target.value}`);
+    }
+  }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -35,7 +43,7 @@ export default function MythicPlusProgress({ progress }: Props) {
       level,
     }));
 
-    setDungeon("De Other Side" as Dungeon);
+    setDungeon("De Other Side");
     setLevel(2);
 
     setAddingNewRun(false);
@@ -48,7 +56,7 @@ export default function MythicPlusProgress({ progress }: Props) {
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="mythicPlusDungeon">
             <Form.Label>Dungeon</Form.Label>
-            <Form.Control as="select" value={dungeon} onChange={((e) => setDungeon(e.target.value as Dungeon))}>
+            <Form.Control as="select" value={dungeon} onChange={handleChange}>
               {SHADOWLANDS_DUNGEONS.map((d) => {
                 return <option key={d} value={d}>{d}</option>;
               })}

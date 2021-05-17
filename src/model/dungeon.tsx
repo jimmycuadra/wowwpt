@@ -10,3 +10,7 @@ export const SHADOWLANDS_DUNGEONS = [
 ] as const;
 
 export type Dungeon = typeof SHADOWLANDS_DUNGEONS[number];
+
+export function isDungeon(s: string): s is Dungeon {
+  return s in SHADOWLANDS_DUNGEONS;
+}
