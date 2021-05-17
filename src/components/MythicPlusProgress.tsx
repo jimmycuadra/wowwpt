@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 import { useAppDispatch } from "../redux/store";
-import { Dungeon, SHADOWLANDS_DUNGEONS } from "../model/character";
+import { Dungeon, SHADOWLANDS_DUNGEONS } from "../model/dungeon";
 import {
   addMythicPlusDungeonRun,
   deleteMythicPlusDungeonRun,

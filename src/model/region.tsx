@@ -3,7 +3,10 @@ export interface Region {
   long: string,
 }
 
-export const regions: { [key: string]: Region } = {
+export const REGION_NAMES = ["us", "eu", "kr", "tw", "cn"] as const;
+export type RegionName = typeof REGION_NAMES[number];
+
+export const regions: Record<RegionName, Region> = {
   us: {
     short: "NA",
     long: "North America",
@@ -24,4 +27,4 @@ export const regions: { [key: string]: Region } = {
     short: "CN",
     long: "China",
   },
-}
+};

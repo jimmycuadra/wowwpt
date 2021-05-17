@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 
 import { useAppDispatch } from "../redux/store";
 import { addCharacter } from "../redux/characters";
-import { regions } from "../model/region";
+import { REGION_NAMES, regions } from "../model/region";
 
 interface Props {
   charactersExist: boolean,
@@ -52,7 +52,7 @@ export default function AddCharacter({ charactersExist, setAddingNewCharacter }:
         <Form.Group controlId="region">
           <Form.Label>Character region</Form.Label>
           <Form.Control as="select" value={region} onChange={(e) => setRegion(e.target.value)}>
-            {Object.keys(regions).map((regionCode) => {
+            {REGION_NAMES.map((regionCode) => {
               const region = regions[regionCode];
 
               return <option key={regionCode} value={regionCode}>{region.long}</option>
