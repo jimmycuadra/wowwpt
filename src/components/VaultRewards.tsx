@@ -43,9 +43,7 @@ export default function VaultRewards() {
     }
 
     const keyLevel = mythicPlusSorted[n - 1].level;
-    const rewardLevel = keyLevel > REWARDS.mythicPlus.maxKeyLevel ?
-      REWARDS.mythicPlus.maxItemLevel :
-      REWARDS.mythicPlus[keyLevel];
+    const rewardLevel = REWARDS.mythicPlusItemLevelForKeyLevel(keyLevel);
 
     return `+${keyLevel}: Item level ${rewardLevel}`;
   };

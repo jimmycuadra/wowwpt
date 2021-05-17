@@ -20,30 +20,42 @@ export const REWARDS: Rewards = {
       max: 233,
     },
   },
-  mythicPlus: {
-    2: 200,
-    3: 203,
-    4: 207,
-    5: 210,
-    6: 210,
-    7: 213,
-    8: 216,
-    9: 216,
-    10: 220,
-    11: 220,
-    12: 223,
-    13: 223,
-    14: 226,
-    15: 226,
-    maxKeyLevel: 15,
-    maxItemLevel: 226,
-  }
-}
+  mythicPlusItemLevelForKeyLevel: (keyLevel) => {
+    if (keyLevel < 2) {
+      throw Error("Keystone level must be at least 2.");
+    }
+
+    switch (keyLevel) {
+      case 2:
+        return 200;
+      case 3:
+        return 203;
+      case 4:
+        return 207;
+      case 5:
+      case 6:
+        return 210;
+      case 7:
+        return 213;
+      case 8:
+      case 9:
+        return 216;
+      case 10:
+      case 11:
+        return 220;
+      case 12:
+      case 13:
+        return 223;
+      default:
+        return 226;
+    }
+  },
+};
 
 interface Rewards {
   raidPriorities: RaidDifficulty[],
   raid: RaidRewards,
-  mythicPlus: MythicPlusRewards,
+  mythicPlusItemLevelForKeyLevel: (keyLevel: number) => number,
 }
 
 type RaidRewards = Record<RaidDifficulty, RaidRewardMinMax>;
@@ -51,10 +63,4 @@ type RaidRewards = Record<RaidDifficulty, RaidRewardMinMax>;
 interface RaidRewardMinMax {
   min: number,
   max: number,
-}
-
-interface MythicPlusRewards {
-  [key: number]: number,
-  maxKeyLevel: number,
-  maxItemLevel: number,
 }
