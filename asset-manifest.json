@@ -1,22 +1,20 @@
 {
   "files": {
-    "main.js": "/wowwpt/static/js/main.c0a976ab.chunk.js",
-    "main.js.map": "/wowwpt/static/js/main.c0a976ab.chunk.js.map",
-    "runtime-main.js": "/wowwpt/static/js/runtime-main.e809d66e.js",
-    "runtime-main.js.map": "/wowwpt/static/js/runtime-main.e809d66e.js.map",
+    "main.js": "/wowwpt/static/js/main.44a8b171.chunk.js",
+    "main.js.map": "/wowwpt/static/js/main.44a8b171.chunk.js.map",
+    "runtime-main.js": "/wowwpt/static/js/runtime-main.12469142.js",
+    "runtime-main.js.map": "/wowwpt/static/js/runtime-main.12469142.js.map",
     "static/css/2.658248ec.chunk.css": "/wowwpt/static/css/2.658248ec.chunk.css",
     "static/js/2.cee239a1.chunk.js": "/wowwpt/static/js/2.cee239a1.chunk.js",
     "static/js/2.cee239a1.chunk.js.map": "/wowwpt/static/js/2.cee239a1.chunk.js.map",
-    "static/js/3.2247149c.chunk.js": "/wowwpt/static/js/3.2247149c.chunk.js",
-    "static/js/3.2247149c.chunk.js.map": "/wowwpt/static/js/3.2247149c.chunk.js.map",
     "index.html": "/wowwpt/index.html",
     "static/css/2.658248ec.chunk.css.map": "/wowwpt/static/css/2.658248ec.chunk.css.map",
     "static/js/2.cee239a1.chunk.js.LICENSE.txt": "/wowwpt/static/js/2.cee239a1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.e809d66e.js",
+    "static/js/runtime-main.12469142.js",
     "static/css/2.658248ec.chunk.css",
     "static/js/2.cee239a1.chunk.js",
-    "static/js/main.c0a976ab.chunk.js"
+    "static/js/main.44a8b171.chunk.js"
   ]
 }
