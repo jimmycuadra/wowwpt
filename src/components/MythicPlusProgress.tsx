@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 import { useAppDispatch } from "../redux/store";
-import { Dungeon, shadowlandsDungeons } from "../model/character";
+import { Dungeon, SHADOWLANDS_DUNGEONS } from "../model/character";
 import {
   addMythicPlusDungeonRun,
   deleteMythicPlusDungeonRun,
@@ -49,7 +49,7 @@ export default function MythicPlusProgress({ progress }: Props) {
           <Form.Group controlId="mythicPlusDungeon">
             <Form.Label>Dungeon</Form.Label>
             <Form.Control as="select" value={dungeon} onChange={((e) => setDungeon(e.target.value as Dungeon))}>
-              {shadowlandsDungeons.map((d) => {
+              {SHADOWLANDS_DUNGEONS.map((d) => {
                 return <option key={d} value={d}>{d}</option>;
               })}
             </Form.Control>
