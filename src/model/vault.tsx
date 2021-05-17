@@ -1,6 +1,6 @@
-import { RaidDifficulty } from "./character";
+import { RaidDifficulty } from "./raid";
 
-export const rewards: Rewards = {
+export const REWARDS: Rewards = {
   priorities: ["mythic", "heroic", "normal", "lfr"],
   raid: {
     lfr: {
@@ -40,25 +40,13 @@ export const rewards: Rewards = {
   }
 }
 
-export const raidDifficultyNames = {
-  lfr: "LFR",
-  normal: "Normal",
-  heroic: "Heroic",
-  mythic: "Mythic",
-}
-
 interface Rewards {
   priorities: RaidDifficulty[],
   raid: RaidRewards,
   mythicPlus: MythicPlusRewards,
 }
 
-interface RaidRewards {
-  lfr: RaidRewardMinMax,
-  normal: RaidRewardMinMax,
-  heroic: RaidRewardMinMax,
-  mythic: RaidRewardMinMax,
-}
+type RaidRewards = Record<RaidDifficulty, RaidRewardMinMax>;
 
 interface RaidRewardMinMax {
   min: number,

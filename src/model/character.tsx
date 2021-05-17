@@ -1,4 +1,5 @@
 import type { Dungeon } from "./dungeon";
+import type { RaidDifficulty } from "./raid";
 import type { RegionName } from "./region";
 
 export interface Character {
@@ -18,8 +19,6 @@ export interface Progress {
   weeklyBonusEvent: boolean,
   worldBoss: boolean,
 }
-
-export type RaidDifficulty = "lfr" | "normal" | "heroic" | "mythic";
 
 export type RaidProgress = Record<RaidDifficulty, number>;
 

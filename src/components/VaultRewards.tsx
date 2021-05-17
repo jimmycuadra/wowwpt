@@ -2,7 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { selectProgress } from "../redux/characters";
-import { raidDifficultyNames, rewards } from "../model/vault";
+import { REWARDS } from "../model/vault";
+import { RAID_DIFFICULTY_NAMES } from "../model/raid";
 
 export default function VaultRewards() {
   const progress = useSelector(selectProgress);
@@ -12,13 +13,13 @@ export default function VaultRewards() {
   }
 
   const raidItemLevel = (n: number) => {
-    const difficulty = rewards.priorities.find((difficulty) => {
+    const difficulty = REWARDS.priorities.find((difficulty) => {
       return progress.raid[difficulty] >= n;
     });
 
 
     if (difficulty) {
-      return `${raidDifficultyNames[difficulty]}: Item level ${rewards.raid[difficulty].min}`;
+      return `${RAID_DIFFICULTY_NAMES[difficulty]}: Item level ${REWARDS.raid[difficulty].min}`;
     } else {
       return;
     }
@@ -42,9 +43,9 @@ export default function VaultRewards() {
     }
 
     const keyLevel = mythicPlusSorted[n - 1].level;
-    const rewardLevel = keyLevel > rewards.mythicPlus.maxKeyLevel ?
-      rewards.mythicPlus.maxItemLevel :
-      rewards.mythicPlus[keyLevel];
+    const rewardLevel = keyLevel > REWARDS.mythicPlus.maxKeyLevel ?
+      REWARDS.mythicPlus.maxItemLevel :
+      REWARDS.mythicPlus[keyLevel];
 
     return `+${keyLevel}: Item level ${rewardLevel}`;
   };
