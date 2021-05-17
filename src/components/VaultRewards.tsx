@@ -13,7 +13,7 @@ export default function VaultRewards() {
   }
 
   const raidItemLevel = (n: number) => {
-    const difficulty = REWARDS.priorities.find((difficulty) => {
+    const difficulty = REWARDS.raidPriorities.find((difficulty) => {
       return progress.raid[difficulty] >= n;
     });
 

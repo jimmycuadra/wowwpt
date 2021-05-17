@@ -1,7 +1,7 @@
 import { RaidDifficulty } from "./raid";
 
 export const REWARDS: Rewards = {
-  priorities: ["mythic", "heroic", "normal", "lfr"],
+  raidPriorities: ["mythic", "heroic", "normal", "lfr"],
   raid: {
     lfr: {
       min: 187,
@@ -41,7 +41,7 @@ export const REWARDS: Rewards = {
 }
 
 interface Rewards {
-  priorities: RaidDifficulty[],
+  raidPriorities: RaidDifficulty[],
   raid: RaidRewards,
   mythicPlus: MythicPlusRewards,
 }
